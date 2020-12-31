@@ -25,8 +25,13 @@ export default {
         alert()
       }
     },
-  }
+  },
 
+  mounted(){
+
+
+
+  }
 }
 </script>
 
