@@ -25,7 +25,7 @@ export default {
       e.preventDefault()
 
       if(this.user && this.pass){
-        axios.post('/sign', {
+        axios.post('http://localhost:3000/sign', {
           user_name: this.user,
           user_pass: this.pass
         })
@@ -34,6 +34,8 @@ export default {
           alert(response.data)
           this.user = null
           this.pass = null
+
+          this.$emit('changeHasAccount')
 
         })
         .catch((error) => {

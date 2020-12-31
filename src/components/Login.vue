@@ -11,6 +11,7 @@
 
 <script>
 import axios from 'axios'
+import { setToken } from '../scripts/token'
 
 export default {
   name: 'Login',
@@ -26,7 +27,7 @@ export default {
 
       if(this.user && this.pass){
 
-        axios.post('/login', {
+        axios.post('http://localhost:3000/login', {
           user_name: this.user,
           user_pass: this.pass
         })
@@ -35,9 +36,10 @@ export default {
           if(response.status == 200){
             alert('Você está conectado')
 
-            //setToken(response.data.token, this.login.user)
-            
+            setToken(response.data.token, this.user)
             this.pass = null
+            
+            this.$router.push('salas')                                   
           }else{
 
             alert('Erro ao conectar. Verifique seus dados e sua conexão e tente novamente')

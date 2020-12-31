@@ -8,6 +8,8 @@
 <script>
 import Login from '@/components/Login.vue'
 import Sign from '@/components/Sign.vue'
+import axios from 'axios'
+import { setToken, getToken } from '../scripts/token'
 
 export default {
   name: 'welcome',
@@ -17,7 +19,38 @@ export default {
   },
   data(){
     return{
-      hasAccount: false
+      hasAccount: true
+    }
+  },
+  methods: {
+    loginAccountWithToken: function(username, token){
+      axios.post('http://localhost:3000/token_login', {
+        user_name: username,
+        token
+      })
+      .then((response) => {
+
+        if(response.status == 200){
+          alert('Você está conectado')
+
+          setToken(response.data.token, username)
+          this.$router.push('salas')
+
+        }else{
+
+          alert('Erro ao conectar. Verifique seus dados e sua conexão e tente novamente')
+        }
+      })
+      .catch((error) => {
+      console.log(error);
+      });
+    },
+  },
+  mounted(){
+    // Auto login
+    let key = getToken()
+    if(key && key.token && key.user){
+      this.loginAccountWithToken(key.user, key.token)
     }
   }
 }
