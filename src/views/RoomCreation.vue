@@ -17,12 +17,18 @@ export default {
     }
   },
 
+  props: {
+    socket: {
+      type: Object,
+    }
+  },
+
   methods: {
     connectRoom: function(e){
       e.preventDefault()
       if(this.roomID){
-        //socket.emit('connectRoom', this.roomID)
-        alert()
+        this.$props.socket.emit('connectRoom', this.roomID)
+        this.$router.push('arena')
       }
     },
   },

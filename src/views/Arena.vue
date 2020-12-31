@@ -31,13 +31,47 @@ export default {
     Painel,
     Loading,
     Controls,
-    
   },
+
+  props: {
+    socket: {
+      type: Object,
+    }
+  },
+
   data(){
     return {
-      inLoading: false,
-      active: true
+      inLoading: true,
+      inProgress: false,
+      active: true,
+      user:{
+        health: 200,
+        active: false,
+        defense: false
+      },
+      oponnent: {
+        health: 200,
+        defense: false,
+        spriteInterval: null
+      },
     }
+  },
+  mounted(){
+    //startGame
+    //turnOn
+    //failToEnter
+
+    this.$props.socket.on('startGame', () => {
+      alert('Start')
+      this.user.health = 200
+      this.oponnent.health = 200
+      this.inProgress = true
+      this.loading = false
+
+      /* setTimeout(() => {
+        this.spriteAnimation(this.$refs.opponent, 'static_sprites')
+      }, 100) */
+    })
   }
 };
 </script>
