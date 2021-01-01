@@ -4,9 +4,18 @@
     <div v-if="!inLoading">
 
       <div>
-        <Header />
+        <Header 
+          :health="oponnent.health"
+        />
+
         <OponnentView ref="oponnentView" />
-        <Painel :console="console" />
+        
+        <Painel 
+          :counter="counter" 
+          :console="console" 
+          :active="user.active"
+          :health="user.health"
+        />
       </div>
 
       <Controls 
@@ -51,6 +60,7 @@ export default {
     return {
       inLoading: true,
       inProgress: false,
+      counter: 0,
       user:{
         health: 200,
         active: false,

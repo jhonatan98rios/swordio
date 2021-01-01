@@ -25,17 +25,22 @@ export default {
   components:{
     Console
   },
-  data(){
-    return{
-      health: 200,
-      active: true,
-      counter: 0
-    }
-  },
 
   props: {
     console: {
       type: String,
+      required: false
+    },
+    counter: {
+      type: Number,
+      required: false
+    },
+    active: {
+      type: Boolean,
+      required: false
+    },
+    health: {
+      type: Number,
       required: false
     }
   },

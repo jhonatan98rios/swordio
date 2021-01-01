@@ -15,17 +15,18 @@
 <script>
 export default {
 
-  data(){
-    return{
-      health: 200,
+  props: {
+    health: {
+      type: Number,
+      required: true
     }
   },
 
   computed: {
     oponnentLife(){
       return{
-        width: this.health / 2 + '%',
-        backgroundColor: `rgb(${ 200 - this.health }, ${ this.health }, 0)`
+        width: this.$props.health / 2 + '%',
+        backgroundColor: `rgb(${ 200 - this.$props.health }, ${ this.$props.health }, 0)`
       }
     }
   }
