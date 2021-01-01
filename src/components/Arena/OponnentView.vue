@@ -1,5 +1,5 @@
 <template>
-  <div class="view">
+  <div class="view is-centered">
     <img 
       ref="opponent" 
       src="../../assets/images/character/0_Warrior_Attack_1_0.png"

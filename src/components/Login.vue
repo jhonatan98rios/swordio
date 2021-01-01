@@ -1,5 +1,5 @@
 <template>
-  <form class="is-column" @submit="loginAccount">
+  <form class="is-column container" @submit="loginAccount">
     <h2 class="text-center f-dark f-white"> Conecte-se </h2>
     <input class="w-100 m-b-8" type="text" placeholder="Insira seu usuário" v-model="user">
     <input class="w-100 m-b-8" type="password" placeholder="Insira sua senha" v-model="pass">

@@ -1,7 +1,7 @@
 <template>
   <div class="welcome">
-    <Login v-if="hasAccount" @changeHasAccount="hasAccount = false"/>
-    <Sign v-if="!hasAccount" @changeHasAccount="hasAccount = true" />
+    <Login class="container" v-if="hasAccount" @changeHasAccount="hasAccount = false" />
+    <Sign class="container" v-if="!hasAccount" @changeHasAccount="hasAccount = true" />
   </div>
 </template>
 
@@ -70,6 +70,10 @@ export default {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+
+  @media(max-width: 768px){
+    width: 80%;
+  }
 
   p, small {
     width: 60%;

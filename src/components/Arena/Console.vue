@@ -1,6 +1,6 @@
 <template>
   <div class="is-flex m-t-8 is-end panel">
-    {{ console }}
+    <p class="f-white"> {{ console }} </p>
   </div>
 </template>
 
@@ -18,10 +18,12 @@ export default {
 
 <style lang="scss" scoped>
 .panel{
-  border-top: 2px solid #ccc;
+  border: none !important;
+  border-top: 3px solid #ccc !important;
   width: calc(100% - 68px);
   height: 100px;
   padding: 16px 32px;
   color: #eee;
+  background-image: none !important;
 }
 </style>

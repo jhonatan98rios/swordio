@@ -1,8 +1,8 @@
 <template>
   <div class="panel">
-    <p class="turn" v-if="active"> Seu turno </p>
-    <p class="turn" v-if="!active"> Turno do oponente </p>
-    <p class="m-0-a p-0 counter" v-html="counter" />
+    <p class="turn text-center" v-if="active"> Seu turno </p>
+    <p class="turn text-center" v-if="!active"> Turno do oponente </p>
+    <p class="m-0-a p-0 counter text-center" v-html="counter" />
 
     <div class="is-column container m-0-a status is-start">
       <h4 class="m-y-0 f-white"> Usuário </h4>

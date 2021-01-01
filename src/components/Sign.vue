@@ -1,5 +1,5 @@
 <template>
-  <form class="is-column" @submit="signAccount">
+  <form class="is-column container" @submit="signAccount">
     <h2 class="text-center f-dark f-white"> Crie uma conta </h2>
     <input class="w-100 m-b-8" type="text" placeholder="Insira seu usuário" v-model="user">
     <input class="w-100 m-b-8" type="password" placeholder="Insira sua senha" v-model="pass">
