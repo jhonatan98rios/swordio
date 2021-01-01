@@ -6,9 +6,10 @@
 
 <script>
 export default {
-  computed: {
-    console(){
-      return this.$store.state.console
+  props: {
+    console: {
+      type: String,
+      required: false
     }
   }
 }

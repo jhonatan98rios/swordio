@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <Console :content="'Olá'" />
+    <Console :console="console" />
   </div>
 </template>
 
@@ -30,6 +30,13 @@ export default {
       health: 200,
       active: true,
       counter: 0
+    }
+  },
+
+  props: {
+    console: {
+      type: String,
+      required: false
     }
   },
 

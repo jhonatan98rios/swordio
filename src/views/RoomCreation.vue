@@ -30,13 +30,7 @@ export default {
         this.$props.socket.emit('connectRoom', this.roomID)
         this.$router.push('arena')
       }
-    },
-  },
-
-  mounted(){
-
-
-
+    }
   }
 }
 </script>
