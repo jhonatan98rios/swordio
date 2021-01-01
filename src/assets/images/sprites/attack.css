@@ -1,0 +1,95 @@
+. {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.-0_Warrior_Attack_1_000 {
+    width: 250px;
+    height: 250px;
+    background-position: -1px -1px;
+}
+
+.-0_Warrior_Attack_1_001 {
+    width: 250px;
+    height: 250px;
+    background-position: -253px -1px;
+}
+
+.-0_Warrior_Attack_1_002 {
+    width: 250px;
+    height: 250px;
+    background-position: -505px -1px;
+}
+
+.-0_Warrior_Attack_1_003 {
+    width: 250px;
+    height: 250px;
+    background-position: -757px -1px;
+}
+
+.-0_Warrior_Attack_1_004 {
+    width: 250px;
+    height: 250px;
+    background-position: -1009px -1px;
+}
+
+.-0_Warrior_Attack_1_005 {
+    width: 250px;
+    height: 250px;
+    background-position: -1261px -1px;
+}
+
+.-0_Warrior_Attack_1_006 {
+    width: 250px;
+    height: 250px;
+    background-position: -1513px -1px;
+}
+
+.-0_Warrior_Attack_1_007 {
+    width: 250px;
+    height: 250px;
+    background-position: -1765px -1px;
+}
+
+.-0_Warrior_Attack_1_008 {
+    width: 250px;
+    height: 250px;
+    background-position: -2017px -1px;
+}
+
+.-0_Warrior_Attack_1_009 {
+    width: 250px;
+    height: 250px;
+    background-position: -2269px -1px;
+}
+
+.-0_Warrior_Attack_1_010 {
+    width: 250px;
+    height: 250px;
+    background-position: -2521px -1px;
+}
+
+.-0_Warrior_Attack_1_011 {
+    width: 250px;
+    height: 250px;
+    background-position: -2773px -1px;
+}
+
+.-0_Warrior_Attack_1_012 {
+    width: 250px;
+    height: 250px;
+    background-position: -3025px -1px;
+}
+
+.-0_Warrior_Attack_1_013 {
+    width: 250px;
+    height: 250px;
+    background-position: -3277px -1px;
+}
+
+.-0_Warrior_Attack_1_014 {
+    width: 250px;
+    height: 250px;
+    background-position: -3529px -1px;
+}

@@ -1,10 +1,10 @@
 <template>
   <div class="view is-centered">
-    <img 
+    <!-- <img 
       ref="opponent" 
       src="../../assets/images/character/0_Warrior_Attack_1_0.png"
       alt="oponente"
-    >
+    > -->
   </div>
 </template>
 
