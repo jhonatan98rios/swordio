@@ -4,6 +4,7 @@
     <div
       class="oponnent"
       :class="spritesheet"
+      ref="oponnent"
     />
     
   </div>
@@ -59,11 +60,18 @@ export default {
 
   .hurt{
     background-image: url(../../assets/images/hurt.gif);
+    animation: blinker .5s infinite;
   }
 
   .died{
     background-image: url(../../assets/images/died.gif);
   }
+}
+
+@keyframes blinker {
+  0%{ opacity: 0 } 
+  50%{ opacity: 1 } 
+  100%{ opacity: 0 } 
 }
 
 </style>

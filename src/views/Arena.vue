@@ -99,7 +99,7 @@ export default {
 
       this.user.health -= dmg;
 
-      if(dmg != 0){
+      if(dmg > 0){
         this.console = `Você perdeu ${dmg} pontos de HP`
         if (dmg > 15) this.console += '\nAtaque crítico!'
 
@@ -153,7 +153,6 @@ export default {
         }
         
         if(dmg != 0){
-
           this.oponnent.health -= dmg
           this.console = `Seu golpe causou ${dmg} de dano`
           if (dmg > 15) this.console += '\nAtaque crítico!'
