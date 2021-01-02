@@ -67,7 +67,8 @@ export default {
       user:{
         health: 200,
         active: false,
-        defense: false
+        defense: false,
+        hasPotion: true
       },
       oponnent: {
         health: 200,
@@ -173,8 +174,8 @@ export default {
 
 
     useCure(){
-      if(this.hasPotion){
-        this.hasPotion = false
+      if(this.user.hasPotion){
+        this.user.hasPotion = false
         let cureValue = cureEmitter(this.$props.socket, this.user.health)
         this.user.health += cureValue
         this.console = `Você usou uma poção de cura e recuperou ${cureValue} pontos de vida`
