@@ -1,16 +1,23 @@
 <template>
   <div class="view is-centered">
-    <!-- <img 
-      ref="opponent" 
-      src="../../assets/images/character/0_Warrior_Attack_1_0.png"
-      alt="oponente"
-    > -->
+
+    <div
+      class="oponnent"
+      :class="spritesheet"
+    />
+    
   </div>
 </template>
 
 <script>
-export default {
 
+export default {
+  props: {
+    spritesheet: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 
@@ -29,9 +36,33 @@ export default {
     top: 0px;
   }
 
-  img{
+  .oponnent{
     max-height: 55%;
+    width: 320px;
+    height: 320px;
     margin-top: 210px;
+    //background-image: url(../../assets/images/idle.gif);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position-x: 30px;
+    background-position-y: -750;
+    overflow: hidden;
+  }
+
+  .idle{
+    background-image: url(../../assets/images/idle.gif);
+  }
+
+  .attack{
+    background-image: url(../../assets/images/attack.gif);
+  }
+
+  .hurt{
+    background-image: url(../../assets/images/hurt.gif);
+  }
+
+  .died{
+    background-image: url(../../assets/images/died.gif);
   }
 }
 

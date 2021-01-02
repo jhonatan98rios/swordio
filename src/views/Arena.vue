@@ -8,7 +8,10 @@
           :health="oponnent.health"
         />
 
-        <OponnentView ref="oponnentView" />
+        <OponnentView 
+          ref="oponnentView" 
+          :spritesheet="oponnent.spritesheet" 
+        />
         
         <Painel 
           :counter="counter" 
@@ -38,7 +41,7 @@ import Painel from '@/components/Arena/Painel.vue'
 import Loading from '@/components/Arena/Loading.vue'
 import Controls from '@/components/Arena/Controls.vue'
 import { attackEmiter, cureEmitter, defenseEmitter } from '../scripts/emitters'
-import { sprites, damageAnimation } from '../scripts/spriteAnimation'
+//import { damageAnimation } from '../scripts/spriteAnimation'
 
 
 export default {
@@ -69,15 +72,9 @@ export default {
       oponnent: {
         health: 200,
         defense: false,
-        spriteInterval: null
+        spritesheet: 'idle' // idle, attack, hurt, died
       },
       console: 'Olá Vue'
-    }
-  },
-
-  computed:{
-    oponnentRef(){
-      return this.$refs.oponnentView.$refs.opponent
     }
   },
 
@@ -89,9 +86,6 @@ export default {
       this.inProgress = true
       this.inLoading = false
 
-      setTimeout(() => {
-        this.spriteAnimation(this.oponnentRef, 'static_sprites')
-      }, 100)
     },
 
 
@@ -114,7 +108,8 @@ export default {
       }
 
       if(this.user.health <= 0){
-        alert('Você perdeu!')
+
+        this.oponnent.spritesheet = 'died'
         this.console = 'Você perdeu!'
         this.$props.socket.emit('logout')
       }
@@ -162,9 +157,11 @@ export default {
           this.oponnent.health -= dmg
           this.console = `Seu golpe causou ${dmg} de dano`
           if (dmg > 15) this.console += '\nAtaque crítico!'
-          
-          // Make animation
-          this.spriteAnimation(this.oponnentRef, 'damage_sprites', 75)
+
+          this.oponnent.spritesheet = 'hurt'
+          setTimeout(() => {
+            this.oponnent.spritesheet = 'idle'
+          }, 630)
 
         }else{
           // Missed attack
@@ -231,33 +228,6 @@ export default {
       this.$props.socket.emit('changeTurn')
       this.counter = 0
     },
-
-
-
-    /* Animations */
-    spriteAnimation(opponent, animation, interval = 140){
-      clearInterval(this.oponnent.spriteInterval)
-      let sprite = 1
-
-      this.oponnent.spriteInterval = setInterval(() => {
-
-        sprite = (sprite < sprites[animation].length -1) ? sprite + 1 : 0
-
-        if(opponent){
-          //opponent.src = sprites[animation][sprite]
-        }
-
-      }, interval)
-
-      if(animation == "damage_sprites"){
-        damageAnimation(opponent)
-        setTimeout(()=> this.spriteAnimation(opponent, "static_sprites"), 900)
-      }
-
-      if(animation == "attack_sprites"){
-        setTimeout(()=> this.spriteAnimation(opponent, "static_sprites"), 450)
-      }
-    }
   },
 
 
@@ -278,7 +248,10 @@ export default {
 
     // Inflinct damage in the player
     this.$props.socket.on('damage', (dmg) => {
-      this.spriteAnimation(this.oponnentRef, 'attack_sprites', 30)
+      this.oponnent.spritesheet = 'attack'
+        setTimeout(() => {
+          this.oponnent.spritesheet = 'idle'
+        }, 630)
       this.damage(dmg)
     })
 
