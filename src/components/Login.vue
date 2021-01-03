@@ -27,7 +27,7 @@ export default {
 
       if(this.user && this.pass){
 
-        axios.post('http://localhost:3000/login', {
+        axios.post(`${process.env.VUE_APP_SOCKET}/login`, {
           user_name: this.user,
           user_pass: this.pass
         })

@@ -25,7 +25,7 @@ export default {
       e.preventDefault()
 
       if(this.user && this.pass){
-        axios.post('http://localhost:3000/sign', {
+        axios.post(`${process.env.VUE_APP_SOCKET}/sign`, {
           user_name: this.user,
           user_pass: this.pass
         })

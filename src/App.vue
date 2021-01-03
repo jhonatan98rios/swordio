@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <router-view :socket="socket" />
   </div>
 </template>
@@ -20,7 +16,7 @@ export default {
 
   mounted(){
 
-    this.socket = io("https://rpg-socket.herokuapp.com/");
+    this.socket = io(process.env.VUE_APP_SOCKET);
 
     // First event in connection (default)
     this.socket.on('connect', () => {
