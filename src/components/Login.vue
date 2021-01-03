@@ -27,7 +27,7 @@ export default {
 
       if(this.user && this.pass){
 
-        axios.post(`${process.env.VUE_APP_SOCKET}/login`, {
+        axios.post(`https://rpg-socket.herokuapp.com/login`, {
           user_name: this.user,
           user_pass: this.pass
         })

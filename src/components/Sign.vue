@@ -25,7 +25,7 @@ export default {
       e.preventDefault()
 
       if(this.user && this.pass){
-        axios.post(`${process.env.VUE_APP_SOCKET}/sign`, {
+        axios.post(`https://rpg-socket.herokuapp.com/sign`, {
           user_name: this.user,
           user_pass: this.pass
         })

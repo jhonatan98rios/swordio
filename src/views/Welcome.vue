@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     loginAccountWithToken: function(username, token){
-      axios.post(`${process.env.VUE_APP_SOCKET}/token_login`, {
+      axios.post(`https://rpg-socket.herokuapp.com/token_login`, {
         user_name: username,
         token
       })
