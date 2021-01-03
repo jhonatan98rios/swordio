@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     loginAccountWithToken: function(username, token){
-      axios.post('http://localhost:3000/token_login', {
+      axios.post(`${process.env.VUE_APP_SOCKET}/token_login`, {
         user_name: username,
         token
       })
