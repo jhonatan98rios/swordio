@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { getToken } from '../scripts/token'
+
 export default {
   data(){
     return {
@@ -30,6 +32,15 @@ export default {
         this.$props.socket.emit('connectRoom', this.roomID)
         this.$router.push('arena')
       }
+    }
+  },
+
+  mounted(){
+
+    let key = getToken()
+
+    if(!key){
+      this.$router.push('/')
     }
   }
 }

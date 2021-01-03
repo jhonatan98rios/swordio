@@ -233,45 +233,49 @@ export default {
 
   mounted(){
 
-    if(!this.$props.socket){
+    if(this.$props.socket){
+
+      this.$props.socket.on('startGame', () => {
+        this.startGame()
+      })
+
+      this.$props.socket.on('turnOn', () => {
+        this.user.active = true
+        this.initiateCount()
+      })
+
+      // Inflinct damage in the player
+      this.$props.socket.on('damage', (dmg) => {
+        this.oponnent.spritesheet = 'attack'
+          setTimeout(() => {
+            this.oponnent.spritesheet = 'idle'
+          }, 630)
+        this.damage(dmg)
+      })
+
+      // oponnentCure
+      this.$props.socket.on('oponnentCure', (cureValue) => {
+        this.oponnentCure(cureValue)
+      })
+
+      // oponnentDefense
+      this.$props.socket.on('oponnentDefense', () => {
+        this.oponnent.defense = true
+        this.console = `Seu oponente está preparado para se defender`
+      })
+
+      // When you win a battle
+      this.$props.socket.on('win', () => {
+        alert('Você venceu')
+        this.console += '\nVocê venceu!!'
+        clearInterval(this.turnTimer)
+      })
+      
+    }else{
       this.$router.push('salas')
     }
 
-    this.$props.socket.on('startGame', () => {
-      this.startGame()
-    })
-
-    this.$props.socket.on('turnOn', () => {
-      this.user.active = true
-      this.initiateCount()
-    })
-
-    // Inflinct damage in the player
-    this.$props.socket.on('damage', (dmg) => {
-      this.oponnent.spritesheet = 'attack'
-        setTimeout(() => {
-          this.oponnent.spritesheet = 'idle'
-        }, 630)
-      this.damage(dmg)
-    })
-
-    // oponnentCure
-    this.$props.socket.on('oponnentCure', (cureValue) => {
-      this.oponnentCure(cureValue)
-    })
-
-    // oponnentDefense
-    this.$props.socket.on('oponnentDefense', () => {
-      this.oponnent.defense = true
-      this.console = `Seu oponente está preparado para se defender`
-    })
-
-    // When you win a battle
-    this.$props.socket.on('win', () => {
-      alert('Você venceu')
-      this.console += '\nVocê venceu!!'
-      clearInterval(this.turnTimer)
-    })
+    
   }
 };
 </script>

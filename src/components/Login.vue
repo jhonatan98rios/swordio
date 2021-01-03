@@ -64,16 +64,19 @@ export default {
   border-radius: 8px;
   box-shadow: 5px 5px 15px rgba(0,0,0,.5);
 
-  .input{
+  input{
     width: 250px;
   }
 
   button{
-    width: 250px;
+    width: auto;
     height: 25px;
     border-radius: 4px;
-    border: none;
-    margin: 0px;
+    border: none; 
+    margin-top: 16px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 14px;
   }
 }
 </style>
