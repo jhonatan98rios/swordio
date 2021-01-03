@@ -16,7 +16,7 @@ export default {
 
   mounted(){
 
-    this.socket = io(process.env.VUE_APP_SOCKET);
+    this.socket = io('https://rpg-socket.herokuapp.com');
 
     // First event in connection (default)
     this.socket.on('connect', () => {
@@ -31,5 +31,13 @@ export default {
 <style lang="scss">
 @import 'global.scss';
 
+/* #app{
+  background-image: url(./assets/images/wallpaper.jpg);
+  background-size: cover;
+  height: 100vh;
+  background-position: top right;
+  margin: 0px;
+  display: inline-block;
+} */
 
 </style>

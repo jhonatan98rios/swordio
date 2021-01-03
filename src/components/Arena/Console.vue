@@ -1,5 +1,5 @@
 <template>
-  <div class="is-flex m-t-8 is-end panel">
+  <div class="is-flex m-t-8 is-end console">
     <p class="f-white"> {{ console }} </p>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.panel{
+.console{
   border: none !important;
   border-top: 3px solid #ccc !important;
   width: calc(100% - 68px);
@@ -25,5 +25,9 @@ export default {
   padding: 16px 32px;
   color: #eee;
   background-image: none !important;
+
+  @media(max-height: 580px){
+    height: 42px;
+  }
 }
 </style>

@@ -37,17 +37,24 @@ export default {
     top: 0px;
   }
 
+  @media(max-height: 580px){
+    top: -40px;
+  }
+
   .oponnent{
     max-height: 55%;
     width: 320px;
     height: 320px;
     margin-top: 210px;
-    //background-image: url(../../assets/images/idle.gif);
     background-repeat: no-repeat;
     background-size: auto;
     background-position-x: 30px;
     background-position-y: -750;
     overflow: hidden;
+
+    @media(max-width: 768px){
+      margin-top: 230px;
+    }
   }
 
   .idle{
