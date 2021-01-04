@@ -1,11 +1,11 @@
 <template>
-  <form class="form glass is-column container" @submit="signAccount">
-    <h2 class="text-center f-white m-t-0"> Crie uma conta </h2>
-    <input class="w-100 m-b-8" type="text" placeholder="Insira seu usuário" v-model="user">
-    <input class="w-100 m-b-8" type="password" placeholder="Insira sua senha" v-model="pass">
-    <button class="f-14" type="submit"> Confirmar </button>
+  <form class="form glass m-t--15 is-column container" @submit="signAccount">
+    <h2 class="text-center f-white m-t-0 f-fantasy"> Crie uma conta </h2>
+    <input class="w-100 m-b-8 f-fantasy" type="text" placeholder="Insira seu usuário" v-model="user">
+    <input class="w-100 m-b-8 f-fantasy" type="password" placeholder="Insira sua senha" v-model="pass">
+    <button class="f-14 f-fantasy" type="submit"> Confirmar </button>
 
-    <p class="f-white f-12" @click="$emit('changeHasAccount')"> Já tem uma conta? </p>
+    <p class="f-white f-12 f-fantasy" @click="$emit('changeHasAccount')"> Já tem uma conta? </p>
   </form>
 </template>
 
@@ -66,7 +66,6 @@ export default {
   width: 70%;
   padding: 32px;
   border-radius: 8px; 
-  margin-top: 15vh;
 
   input{
     width: 250px;

@@ -5,10 +5,10 @@ Criar alert personalizado de sucesso, erro, vitória e derrota ✓
 Criar botão de logout ✓
 Fixar largura dos containers ✓
 
-Adicionar criptografia na senha
 Trocar tipografias
 Adicionar transição nas trocas de telas
 Adicionar trilha sonora
 Adicionar efeitos sonoros
 Organizar atributos de jogador
+Adicionar criptografia na senha
 Adicionar verificação de existencia de login no backend

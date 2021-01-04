@@ -4,10 +4,9 @@
 
 body{
   margin: 0 auto;
-  //background-image: radial-gradient(#555, #000);
+  overflow-y: hidden;
   background-image: radial-gradient(circle at 50% 0%, #140c83, #000, #000);
   background-color: #ccc;
-  overflow-y: hidden;
   height: 100vh;
 }
 
@@ -109,6 +108,14 @@ input{
   margin-top: 64px !important;
 }
 
+.m-t--15{
+  margin-top: 15vh !important;
+}
+
+.p-t--15{
+  padding-top: 15vh !important;
+}
+
 .m-b-8{
   margin-bottom: 8px !important;
 }
@@ -130,16 +137,20 @@ input{
   padding: 0px;
 }
 
+.f-fantasy{
+  font-family: fantasy;
+}
+
 .f-warning{
   color: #f00;
 }
 
 .f-white{
-  color: #fff;
+  color: #fff !important;
 }
 
 .f-gray{
-  color: #aaa;
+  color: #aaa !important;
 }
 
 .f-10{

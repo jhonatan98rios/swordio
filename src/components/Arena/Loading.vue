@@ -1,7 +1,7 @@
 <template>
   <div class="loading glass m-0-a text-center">
-    <h2 class="m-y-16"> Aguardando oponente </h2>
-    <p> Não se esqueça de <br> enviar o nome da sala que você criou <br> para um amigo</p>
+    <h2 class="m-y-16 f-fantasy"> Aguardando oponente </h2>
+    <p class="f-fantasy"> Não se esqueça de <br> enviar o nome da sala que você criou <br> para um amigo</p>
   </div>
 </template>
 
