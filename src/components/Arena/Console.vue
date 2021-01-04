@@ -1,5 +1,5 @@
 <template>
-  <div class="is-flex m-t-8 is-end console">
+  <div class="is-flex m-t-16 is-end console">
     <p class="f-white"> {{ console }} </p>
   </div>
 </template>

@@ -60,13 +60,17 @@ export default {
 
   .panel{
     padding-top: 4px;
-    background-image:linear-gradient(#000000, #150C85, #000000);
-
-    @media(max-height: 768px){
-      position: fixed;
-      bottom: 0;
-      width: calc(100% - 4px);
-    }
+    background-image:linear-gradient(rgba(20, 12, 133, 0.75), #000000);
+    backdrop-filter: blur(2px);
+    box-shadow: 3px 3px 3px rgba(0,0,0,.5);
+    position: fixed;
+    bottom: 12px;
+    border-radius: 8px;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    width: calc(100% - 24px);
 
     .turn{
       margin-top: -54px;
@@ -78,7 +82,7 @@ export default {
     }
 
     .counter{
-      background-color: #000;
+      background-color: rgb(20, 12, 133);
       border: 2px solid #ccc;
       color: #fff;
       box-shadow: 0px 1px 3px rgba(0,0,0,.5);

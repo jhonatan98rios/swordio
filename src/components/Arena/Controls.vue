@@ -44,6 +44,7 @@ export default {
     width: 60px;
     height: 60px;
     margin: 10px;
+    opacity: .9;
   }
 }
 

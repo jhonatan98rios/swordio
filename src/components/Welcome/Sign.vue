@@ -3,7 +3,7 @@
     <h2 class="text-center f-white m-t-0"> Crie uma conta </h2>
     <input class="w-100 m-b-8" type="text" placeholder="Insira seu usuário" v-model="user">
     <input class="w-100 m-b-8" type="password" placeholder="Insira sua senha" v-model="pass">
-    <button class="f-14" type="submit"> confirmar </button>
+    <button class="f-14" type="submit"> Confirmar </button>
 
     <p class="f-white f-12" @click="$emit('changeHasAccount')"> Já tem uma conta? </p>
   </form>
@@ -42,12 +42,15 @@ export default {
       })
       .then((response) => {
 
-        alert(response.data)
-        this.user = null
-        this.pass = null
-
-        this.$emit('changeHasAccount')
-
+        if(response.status == 200){
+          this.user = null
+          this.pass = null
+  
+          this.$emit('warning-event', 'Sua conta foi criada com sucesso!')
+          this.$emit('changeHasAccount')
+        }else{
+          this.$emit('warning-event', 'Houve um problema com a criação da sua conta')
+        }
       })
       .catch((error) => {
         console.log(error);

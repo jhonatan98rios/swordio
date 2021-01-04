@@ -4,8 +4,9 @@
     <p class="f-white"> Informe o nome da sala que deseja criar, ou informe o nome de uma sala já existente para se conectar. </p>
 
     <input type="text" placeholder="Insira o nome da sala" v-model="roomID">
-    <button type="submit m-y-16"> confirmar </button>
-    <small class="m-t-32 f-white"> Este jogo é uma versão de testes e <br> pode apresentar bugs e limitações </small>
+    <button type="submit m-y-16"> Confirmar </button>
+    <button @click="logout"> Logout </button>
+    <small class="m-t-32 f-white f-12"> Este jogo é uma versão de testes e pode apresentar bugs e limitações </small>
   </form>
 </template>
 
@@ -32,6 +33,10 @@ export default {
         this.$props.socket.emit('connectRoom', this.roomID)
         this.$router.push('arena')
       }
+    },
+    logout: function(){
+      localStorage.removeItem('rpg');
+      this.$router.push('/')
     }
   },
 

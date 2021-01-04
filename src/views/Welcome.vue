@@ -4,6 +4,7 @@
       class="container" 
       v-if="hasAccount" 
       @changeHasAccount="hasAccount = false"
+      @warning-event="warning = $event"
       @close-warning="warning = null"
     />
     

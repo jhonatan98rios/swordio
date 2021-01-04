@@ -3,7 +3,7 @@
     <h2 class="text-center f-white m-t-0"> Conecte-se </h2>
     <input class="w-100 m-b-8" type="text" placeholder="Insira seu usuário" v-model="user">
     <input class="w-100 m-b-8" type="password" placeholder="Insira sua senha" v-model="pass">
-    <button class="f-14" type="submit"> confirmar </button>
+    <button class="f-14" type="submit"> Confirmar </button>
 
     <p class="f-white f-12" @click="$emit('changeHasAccount')"> Não tem uma conta? </p>
   </form>
@@ -36,15 +36,15 @@ export default {
         .then((response) => {
 
           if(response.status == 200){
-            alert('Você está conectado')
 
             setToken(response.data.token, this.user)
             this.pass = null
             
+            this.$emit('warning-event', 'Seja bem vindo!')
             this.$router.push('salas')                                   
           }else{
 
-            alert('Erro ao conectar. Verifique seus dados e sua conexão e tente novamente')
+            this.$emit('warning-event', 'Erro ao conectar. Verifique seus dados e sua conexão e tente novamente')
           }
         })
         .catch((error) => {

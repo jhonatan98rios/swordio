@@ -42,8 +42,6 @@ import Painel from '@/components/Arena/Painel.vue'
 import Loading from '@/components/Arena/Loading.vue'
 import Controls from '@/components/Arena/Controls.vue'
 import { attackEmiter, cureEmitter, defenseEmitter } from '../scripts/emitters'
-//import { damageAnimation } from '../scripts/spriteAnimation'
-
 
 export default {
   components:{
@@ -76,8 +74,7 @@ export default {
         defense: false,
         spritesheet: 'idle' // idle, attack, hurt, died
       },
-      console: 'Você está conectado',
-      warning: null
+      console: 'Você está conectado'
     }
   },
 

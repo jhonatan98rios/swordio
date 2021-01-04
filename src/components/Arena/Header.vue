@@ -1,6 +1,6 @@
 <template>
   <div class="header glass-border">
-    <div class="container m-0-a is-column is-start m-t-8">
+    <div class="container m-0-a is-column is-start m-t-16">
       <h4 class="m-y-0 f-white"> Oponente </h4>
       <div class="m-y-0 is-flex w-100 m-t-4"> 
         <h3 class="f-white m-y-0">HP:</h3> 
@@ -36,11 +36,13 @@ export default {
 <style lang="scss" scoped>
 
 .header{
-  width: calc(100% - 6px);
-  height: 50px;
-  margin: 0 auto;
+  width: calc(100% - 24px);
+  margin: 12px auto;
+  border-radius: 8px;
   padding-bottom: 16px;
-  background-image:linear-gradient(#150C85, #000000);
+  background-image:linear-gradient(rgba(20, 12, 133, 0.75), rgba(0, 0, 0, .9));
+  box-shadow: 3px 3px 3px rgba(0,0,0,.5);
+  backdrop-filter: blur(2px);
   
   .life-bar{
     width: 100%;
