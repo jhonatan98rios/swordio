@@ -31,6 +31,7 @@
         @useDefense="useDefense"
       />
     </div>
+
   </div>
 </template>
 
@@ -50,7 +51,7 @@ export default {
     OponnentView,
     Painel,
     Loading,
-    Controls,
+    Controls
   },
 
   props: {
@@ -75,7 +76,8 @@ export default {
         defense: false,
         spritesheet: 'idle' // idle, attack, hurt, died
       },
-      console: 'Olá Vue'
+      console: 'Você está conectado',
+      warning: null
     }
   },
 
@@ -86,7 +88,6 @@ export default {
       this.oponnent.health = 200
       this.inProgress = true
       this.inLoading = false
-
     },
 
 
@@ -100,18 +101,16 @@ export default {
 
       this.user.health -= dmg;
 
-      if(dmg > 0){
-        this.console = `Você perdeu ${dmg} pontos de HP`
-        if (dmg > 15) this.console += '\nAtaque crítico!'
+      if(dmg > 0) this.console = `Você perdeu ${dmg} pontos de HP. `
+      if(dmg > 15) this.console += ' Ataque crítico!'      
+      if(dmg <= 0) this.console = `Você se esquivou do golpe`
 
-      }else{
-        this.console = `Você se esquivou do golpe`
-      }
-
-      if(this.user.health <= 0){
+      if(this.user.health <= 0){    
 
         this.oponnent.spritesheet = 'died'
+        console.log(this.oponnent.spritesheet)
         this.console = 'Você perdeu!'
+        this.user.health = 0
         this.$props.socket.emit('logout')
       }
     },
@@ -201,7 +200,7 @@ export default {
 
 
     initiateCount: function(){
-      this.counter = 5
+      this.counter = 3
       this.user.defense = false
 
       clearInterval(this.turnTimer)
@@ -266,16 +265,14 @@ export default {
 
       // When you win a battle
       this.$props.socket.on('win', () => {
-        alert('Você venceu')
         this.console += '\nVocê venceu!!'
+        this.oponnent.health = 0
         clearInterval(this.turnTimer)
       })
       
     }else{
       this.$router.push('salas')
-    }
-
-    
+    }   
   }
 };
 </script>

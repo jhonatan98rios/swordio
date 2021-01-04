@@ -1,5 +1,5 @@
 <template>
-  <form class="form m-0-a text-center m-t-64 is-column container" @submit="connectRoom">
+  <form class="form glass m-0-a text-center is-column container" @submit="connectRoom">
     <h2 class="f-white m-t-0"> Seja bem vindo </h2>
     <p class="f-white"> Informe o nome da sala que deseja criar, ou informe o nome de uma sala já existente para se conectar. </p>
 
@@ -48,16 +48,11 @@ export default {
 
 <style lang="scss" scoped>
 .form{
-  background-image:linear-gradient(#000000, #150C85, #000000);
-  border: 3px solid #ccc;
-  width: auto;
-  padding: 32px;
+  width: 70%;
+  padding: 32px;  
+  max-width: 400px;
   border-radius: 8px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,.5);
-
-  @media(max-width: 768px){
-    margin: 0px 24px;
-  }
+  margin-top: 15vh;
 
   p{
     max-width: 450px;

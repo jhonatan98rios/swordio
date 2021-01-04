@@ -1,15 +1,11 @@
-@font-face {
-  font-family: DarkShadow;
-  src: url(./assets/fonts/DarkShadow.ttf);
-}
-
 *, body, p{
   font-family: sans-serif;
 }
 
 body{
   margin: 0 auto;
-  background-image: radial-gradient(#555, #000);
+  //background-image: radial-gradient(#555, #000);
+  background-image: radial-gradient(circle at 50% 0%, #140c83, #000, #000);
   background-color: #ccc;
   overflow-y: hidden;
   height: 100vh;
@@ -138,11 +134,29 @@ input{
   color: #fff;
 }
 
-.f-dark{
-  font-family: DarkShadow;
-  font-size: 36px;
+.f-12{
+  font-size: 12px;
 }
 
 .f-14{
   font-size: 14px;
+}
+
+.f-16{
+  font-size: 16px;
+}
+
+.glass{
+  background-color: rgba(255,255,255,.04);
+  backdrop-filter: blur(2px);
+  border: 2px solid #777;
+  border-left: 2px solid #eee;
+  border-top: 2px solid #eee;
+  box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+}
+
+.glass-border{
+  border: 2px solid #777;
+  border-left: 2px solid #eee;
+  border-top: 2px solid #eee;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header glass-border">
     <div class="container m-0-a is-column is-start m-t-8">
       <h4 class="m-y-0 f-white"> Oponente </h4>
       <div class="m-y-0 is-flex w-100 m-t-4"> 
@@ -41,7 +41,6 @@ export default {
   margin: 0 auto;
   padding-bottom: 16px;
   background-image:linear-gradient(#150C85, #000000);
-  border: 3px solid #ccc;
   
   .life-bar{
     width: 100%;

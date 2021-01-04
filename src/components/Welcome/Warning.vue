@@ -1,0 +1,43 @@
+<template>
+  <div class="glass warning">
+    <span class="close" @click="$emit('close-warning')">&times;</span>
+    <p> {{ warning }} </p>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    warning: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.warning{
+  position: absolute;
+  top: 10vh;
+  width: 80%;
+  max-width: 300px;
+  height: 60px;
+  padding: 32px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255,255,255,.05);
+
+  .close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+  }
+
+  p{
+    color: #fff;
+    text-align: center;
+  }
+}
+</style>

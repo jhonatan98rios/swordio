@@ -1,6 +1,6 @@
 <template>
-  <div class="loading m-0-a text-center m-t-64">
-    <h2 class="f-dark m-y-16"> Aguardando oponente </h2>
+  <div class="loading glass m-0-a text-center">
+    <h2 class="m-y-16"> Aguardando oponente </h2>
     <p> Não se esqueça de <br> enviar o nome da sala que você criou <br> para um amigo</p>
   </div>
 </template>
@@ -12,16 +12,11 @@ export default {}
 <style lang="scss" scoped>
 
 .loading{
-  background-image:linear-gradient(#000000, #150C85, #000000);
-  border: 3px solid #ccc;
-  width: auto;
+  width: 70%;
   padding: 32px;
+  max-width: 400px;
   border-radius: 8px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,.5);
-
-  @media(max-width: 768px){
-    margin: 0px 24px;
-  }
+  margin-top: 15vh;
 
   h2{
     color: #fff;

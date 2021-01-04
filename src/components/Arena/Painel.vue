@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel glass-border">
     <p class="turn text-center" v-if="active"> Seu turno </p>
     <p class="turn text-center" v-if="!active"> Turno do oponente </p>
     <p class="m-0-a p-0 counter text-center" v-html="counter" />
@@ -61,16 +61,15 @@ export default {
   .panel{
     padding-top: 4px;
     background-image:linear-gradient(#000000, #150C85, #000000);
-    border: 3px solid #ccc;
 
     @media(max-height: 768px){
       position: fixed;
       bottom: 0;
-      width: calc(100% - 6px);
+      width: calc(100% - 4px);
     }
 
     .turn{
-      margin-top: -64px;
+      margin-top: -54px;
       margin-bottom: 12px;
       font-family: sans-serif;
       color: #eee;
@@ -80,7 +79,7 @@ export default {
 
     .counter{
       background-color: #000;
-      border: 3px solid #ccc;
+      border: 2px solid #ccc;
       color: #fff;
       box-shadow: 0px 1px 3px rgba(0,0,0,.5);
       width: 20px;

@@ -1,13 +1,32 @@
 <template>
   <div class="welcome">
-    <Login class="container" v-if="hasAccount" @changeHasAccount="hasAccount = false" />
-    <Sign class="container" v-if="!hasAccount" @changeHasAccount="hasAccount = true" />
+    <Login 
+      class="container" 
+      v-if="hasAccount" 
+      @changeHasAccount="hasAccount = false"
+      @close-warning="warning = null"
+    />
+    
+    <Sign 
+      class="container" 
+      v-if="!hasAccount" 
+      @changeHasAccount="hasAccount = true" 
+      @warning-event="warning = $event"
+      @close-warning="warning = null"
+    />
+
+    <Warning 
+      :warning="warning" 
+      v-if="warning" 
+      @close-warning="warning = null" 
+    />
   </div>
 </template>
 
 <script>
-import Login from '@/components/Login.vue'
-import Sign from '@/components/Sign.vue'
+import Login from '@/components/Welcome/Login.vue'
+import Sign from '@/components/Welcome/Sign.vue'
+import Warning from '@/components/Welcome/Warning.vue'
 import axios from 'axios'
 import { setToken, getToken } from '../scripts/token'
 
@@ -15,11 +34,13 @@ export default {
   name: 'welcome',
   components: {
     Login,
-    Sign
+    Sign,
+    Warning
   },
   data(){
     return{
-      hasAccount: true
+      hasAccount: true,
+      warning: null
     }
   },
   methods: {
@@ -44,7 +65,7 @@ export default {
       .catch((error) => {
       console.log(error);
       });
-    },
+    }
   },
   mounted(){
     // Auto login
@@ -59,13 +80,9 @@ export default {
 <style lang="scss" scoped>
 
 .welcome{
-  //background-image: url(../images/paper.png);
   min-height: 700px;
   width: 90vw;
   max-width: 700px;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,7 +92,7 @@ export default {
     width: 80%;
   }
 
-  p, small {
+  /* p, small {
     width: 60%;
     max-width: 320px;
     text-align: center;
@@ -111,7 +128,7 @@ export default {
   p{
     cursor: pointer;
     font-size: 14px;
-  }
+  } */
 
 }
 

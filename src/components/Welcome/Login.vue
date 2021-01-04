@@ -1,17 +1,17 @@
 <template>
-  <form class="form is-column container m-t-64" @submit="loginAccount">
-    <h2 class="text-center f-dark f-white m-t-0"> Conecte-se </h2>
+  <form class="form glass is-column container" @submit="loginAccount">
+    <h2 class="text-center f-white m-t-0"> Conecte-se </h2>
     <input class="w-100 m-b-8" type="text" placeholder="Insira seu usuário" v-model="user">
     <input class="w-100 m-b-8" type="password" placeholder="Insira sua senha" v-model="pass">
-    <button type="submit"> confirmar </button>
+    <button class="f-14" type="submit"> confirmar </button>
 
-    <p class="f-white" @click="$emit('changeHasAccount')"> Não tem uma conta? </p>
+    <p class="f-white f-12" @click="$emit('changeHasAccount')"> Não tem uma conta? </p>
   </form>
 </template>
 
 <script>
 import axios from 'axios'
-import { setToken } from '../scripts/token'
+import { setToken } from '../../scripts/token'
 
 export default {
   name: 'Login',
@@ -26,6 +26,8 @@ export default {
       e.preventDefault()
 
       if(this.user && this.pass){
+
+        this.$emit('close-warning')
 
         axios.post(`https://rpg-socket.herokuapp.com/login`, {
           user_name: this.user,
@@ -57,12 +59,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .form{
-  background-image:linear-gradient(#000000, #150C85, #000000);
-  border: 3px solid #ccc;
-  width: auto;
+  width: 70%;
   padding: 32px;
   border-radius: 8px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+  margin-top: 15vh;
 
   input{
     width: 250px;
@@ -76,7 +76,6 @@ export default {
     margin-top: 16px;
     background-color: transparent;
     color: #fff;
-    font-size: 14px;
   }
 }
 </style>
