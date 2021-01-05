@@ -1,16 +1,38 @@
 <template>
   <div id="app">
     <router-view :socket="socket" />
+    <Warning 
+      :warning="warning" 
+      v-if="warning" 
+      @close-warning="setWarning" 
+    />
   </div>
 </template>
 
 <script>
+import Warning from '@/components/Welcome/Warning.vue'
 import io from 'socket.io-client';
 
 export default {
+  components: {
+    Warning
+  },
+
+  computed: {
+    warning(){
+      return this.$store.state.warning
+    }
+  },
+  
   data(){
     return {
-      socket: null
+      socket: null,
+    }
+  },
+
+  methods: {
+    setWarning(){
+      this.warning = null
     }
   },
 

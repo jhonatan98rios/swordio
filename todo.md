@@ -5,6 +5,7 @@ Criar alert personalizado de sucesso, erro, vitória e derrota ✓
 Criar botão de logout ✓
 Fixar largura dos containers ✓
 
+Migrar Warnings para App e integrar com vuex
 Trocar tipografias
 Adicionar transição nas trocas de telas
 Adicionar trilha sonora

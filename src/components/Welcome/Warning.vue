@@ -1,6 +1,6 @@
 <template>
   <div class="glass warning">
-    <span class="close" @click="$emit('close-warning')">&times;</span>
+    <span class="close" @click="$store.commit('setWarning', null)">&times;</span>
     <p> {{ warning }} </p>
   </div>
 </template>
@@ -19,6 +19,11 @@ export default {
 <style lang="scss" scoped>
 .warning{
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
   top: 10vh;
   width: 80%;
   max-width: 300px;

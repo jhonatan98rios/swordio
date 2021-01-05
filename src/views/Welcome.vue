@@ -4,30 +4,21 @@
       class="container" 
       v-if="hasAccount" 
       @changeHasAccount="hasAccount = false"
-      @warning-event="warning = $event"
-      @close-warning="warning = null"
     />
     
     <Sign 
       class="container" 
       v-if="!hasAccount" 
       @changeHasAccount="hasAccount = true" 
-      @warning-event="warning = $event"
-      @close-warning="warning = null"
     />
-
-    <Warning 
-      :warning="warning" 
-      v-if="warning" 
-      @close-warning="warning = null" 
-    />
+    
   </div>
 </template>
 
 <script>
 import Login from '@/components/Welcome/Login.vue'
 import Sign from '@/components/Welcome/Sign.vue'
-import Warning from '@/components/Welcome/Warning.vue'
+
 import axios from 'axios'
 import { setToken, getToken } from '../scripts/token'
 
@@ -35,13 +26,11 @@ export default {
   name: 'welcome',
   components: {
     Login,
-    Sign,
-    Warning
+    Sign
   },
   data(){
     return{
-      hasAccount: true,
-      warning: null
+      hasAccount: true
     }
   },
   methods: {
@@ -53,14 +42,17 @@ export default {
       .then((response) => {
 
         if(response.status == 200){
-          alert('Você está conectado')
+          this.$store.dispatch('setWarning', {
+            amount: 'Você está conectado'
+          })
 
           setToken(response.data.token, username)
           this.$router.push('salas')
 
         }else{
-
-          alert('Erro ao conectar. Verifique seus dados e sua conexão e tente novamente')
+          this.$store.dispatch('setWarning', {
+            amount: 'Erro ao conectar. Verifique seus dados e sua conexão e tente novamente'
+          })
         }
       })
       .catch((error) => {

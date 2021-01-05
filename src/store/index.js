@@ -5,12 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    console: 'Olá Mundo'
+    console: 'Olá Mundo',
+    warning: null
   },
   mutations: {
+    setWarning(state, newState){
+      state.warning = newState
+    }
   },
   actions: {
-  },
-  modules: {
+    setWarning: ({ commit }, data) => commit('setWarning', data.amount)
   }
 })

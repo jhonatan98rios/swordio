@@ -1,11 +1,11 @@
 <template>
   <form class="form glass m-t--15 is-column container" @submit="loginAccount">
-    <h2 class="text-center f-white m-t-0 f-fantasy"> Conecte-se </h2>
-    <input class="w-100 m-b-8 f-fantasy" type="text" placeholder="Insira seu usuário" v-model="user">
-    <input class="w-100 m-b-8 f-fantasy" type="password" placeholder="Insira sua senha" v-model="pass">
-    <button class="f-14 f-fantasy" type="submit"> Confirmar </button>
+    <h2 class="text-center f-white m-t-0 f-sans"> Conecte-se </h2>
+    <input class="w-100 m-b-8 f-sans" type="text" placeholder="Insira seu usuário" v-model="user">
+    <input class="w-100 m-b-8 f-sans" type="password" placeholder="Insira sua senha" v-model="pass">
+    <button class="f-14 f-sans" type="submit"> Confirmar </button>
 
-    <p class="f-white f-12 f-fantasy" @click="$emit('changeHasAccount')"> Não tem uma conta? </p>
+    <p class="f-white f-12 f-sans" @click="$emit('changeHasAccount')"> Não tem uma conta? </p>
   </form>
 </template>
 
@@ -26,8 +26,10 @@ export default {
       e.preventDefault()
 
       if(this.user && this.pass){
-
-        this.$emit('close-warning')
+        this.$store.dispatch('setWarning', {
+          amount: null
+        })
+        
 
         axios.post(`https://rpg-socket.herokuapp.com/login`, {
           user_name: this.user,
@@ -40,11 +42,16 @@ export default {
             setToken(response.data.token, this.user)
             this.pass = null
             
-            this.$emit('warning-event', 'Seja bem vindo!')
+            this.$store.dispatch('setWarning', {
+              amount: 'Seja bem vindo!'
+            })
+            
             this.$router.push('salas')                                   
           }else{
-
-            this.$emit('warning-event', 'Erro ao conectar. Verifique seus dados e sua conexão e tente novamente')
+            this.$store.dispatch('setWarning', {
+              amount: 'Erro ao se conectar. Verifique seus dados e sua conexão e tente novamente'
+            })
+            
           }
         })
         .catch((error) => {
