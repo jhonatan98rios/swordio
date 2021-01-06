@@ -74,7 +74,13 @@ export default {
         defense: false,
         spritesheet: 'idle' // idle, attack, hurt, died
       },
-      console: 'Você está conectado'
+      console: 'Você está conectado',
+      sounds: {
+        attack: null,
+        damage: null,
+        iten: null,
+        audio: null
+      }
     }
   },
 
@@ -142,14 +148,19 @@ export default {
       if(this.user.active){
 
         let dmg = attackEmiter(this.$props.socket, this.oponnent.defense)
+        this.sounds.attack.play()
 
         if(dmg == -1){
+          this.sounds.damage[1].play
           this.oponnentCounterAttack()
           this.endTurn()
           return
         }
         
         if(dmg != 0){
+
+          this.sounds.pain.play()
+
           this.oponnent.health -= dmg
           this.console = `Seu golpe causou ${dmg} de dano`
           if (dmg > 15) this.console += '\nAtaque crítico!'
@@ -171,6 +182,9 @@ export default {
 
     useCure(){
       if(this.user.hasPotion){
+
+        this.sounds.item.play()
+
         this.user.hasPotion = false
         let cureValue = cureEmitter(this.$props.socket, this.user.health)
         this.user.health += cureValue
@@ -224,6 +238,14 @@ export default {
       this.$props.socket.emit('changeTurn')
       this.counter = 0
     },
+
+    loadSounds(){
+      this.sounds.attack = new Audio('https://media1.vocaroo.com/mp3/19Rsg33S37om')
+      //this.sounds.damage[0] = new Audio('https://media1.vocaroo.com/mp3/1l2mExMdLLY4')
+      this.sounds.damage = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
+      this.sounds.item = new Audio('https://media1.vocaroo.com/mp3/16RNLg7yTKVb')
+      this.sounds.pain = new Audio('https://media1.vocaroo.com/mp3/1kfZcK3ZOdX4')
+    }
   },
 
 
@@ -233,6 +255,7 @@ export default {
 
       this.$props.socket.on('startGame', () => {
         this.startGame()
+        this.loadSounds()
       })
 
       this.$props.socket.on('turnOn', () => {
@@ -243,6 +266,9 @@ export default {
       // Inflinct damage in the player
       this.$props.socket.on('damage', (dmg) => {
         this.oponnent.spritesheet = 'attack'
+        this.sounds.attack.play()
+        this.sounds.pain.play()
+
           setTimeout(() => {
             this.oponnent.spritesheet = 'idle'
           }, 630)
