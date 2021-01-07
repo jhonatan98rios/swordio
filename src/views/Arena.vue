@@ -77,7 +77,7 @@ export default {
       console: 'Você está conectado',
       sounds: {
         attack: null,
-        damage: null,
+        impact: null,
         iten: null,
         audio: null
       }
@@ -241,10 +241,16 @@ export default {
 
     loadSounds(){
       this.sounds.attack = new Audio('https://media1.vocaroo.com/mp3/19Rsg33S37om')
-      //this.sounds.damage[0] = new Audio('https://media1.vocaroo.com/mp3/1l2mExMdLLY4')
-      this.sounds.damage = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
+      //this.sounds.attack.volume = 0
+
+      this.sounds.impact = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
+      //this.sounds.impact.volume = 0
+
       this.sounds.item = new Audio('https://media1.vocaroo.com/mp3/16RNLg7yTKVb')
+      //this.sounds.item.volume = 0
+
       this.sounds.pain = new Audio('https://media1.vocaroo.com/mp3/1kfZcK3ZOdX4')
+      //this.sounds.pain.volume = 0
     }
   },
 

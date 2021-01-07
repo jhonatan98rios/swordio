@@ -6,16 +6,19 @@
       v-if="warning" 
       @close-warning="setWarning" 
     />
+    <Sound />
   </div>
 </template>
 
 <script>
-import Warning from '@/components/Welcome/Warning.vue'
+import Warning from '@/components/Shared/Warning.vue'
+import Sound from '@/components/Shared/Sound.vue'
 import io from 'socket.io-client';
 
 export default {
   components: {
-    Warning
+    Warning,
+    Sound
   },
 
   computed: {

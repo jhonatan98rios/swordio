@@ -6,9 +6,10 @@ Criar botão de logout ✓
 Fixar largura dos containers ✓
 Migrar Warnings para App e integrar com vuex ✓
 
-Organizar atributos de jogador
 Adicionar trilha sonora
 Adicionar efeitos sonoros
+
+Organizar atributos de jogador
 Trocar tipografias
 Adicionar transição nas trocas de telas
 Adicionar criptografia na senha
