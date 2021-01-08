@@ -39,9 +39,7 @@ export default {
         return
       }
 
-      this.$store.dispatch('setWarning', {
-        amount: null
-      })
+      this.$store.dispatch('setWarning', { amount: null })
 
       axios.post(`https://rpg-socket.herokuapp.com/sign`, {
         user_name: this.user,

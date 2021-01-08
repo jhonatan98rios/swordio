@@ -4,47 +4,63 @@
       class="sound-button" 
       src="../../assets/images/sound.png" 
       alt="Tocar audio"
-      @click="startSound"
+      @click="toggleSound"
     >
   </div>
 </template>
 
 <script>
-//import { Howl } from 'howler'
+import {sounds, stopSounds} from '../../scripts/sounds'
 
 export default {
   data(){
     return{
-      menu: null,
-      battle: null
+      active: false,
+      current: 'menu',
+    }
+  },
+  computed: {
+    soundTheme: function(){
+      return this.$store.state.sound.theme
+    },
+    soundState: function(){
+      return this.$store.state.sound.active
     }
   },
   methods: {
-    startSound(){      
-      if(!this.menu || !this.menu.active){
-        console.log('Play')
-        this.menu.active = true
-        this.menu.play()
-      }else{
-        console.log('Stop')
-        this.menu.active = false
-        this.menu.pause();
-        this.menu.currentTime = 0;
-      }
+    toggleSound(){      
+      if( !this.soundState ){
+        this.play(this.soundTheme)
 
-      /* this.menu = new Howl({
-        src: ['https://media1.vocaroo.com/mp3/1og1THFGbREk'],
-        autoplay: true,
-        loop: false,
-        volume: 0.5,
-        onend: function() {
-          console.log('Finished!');
-        }
-      }); */
-    }
+      }else{
+        this.stop() 
+      }
+    },
+
+    play(s){
+      console.log()
+
+      this.$store.dispatch('setSoundTheme', { amount: s })
+      this.$store.dispatch('setSoundState', { amount: true })
+      sounds[s].play()
+    },
+
+    stop(){
+      this.$store.dispatch('setSoundState', { amount: false })
+      stopSounds()
+    },
+
   },
-  mounted(){
-    this.menu = new Audio('https://media1.vocaroo.com/mp3/1og1THFGbREk')
+
+  watch: {
+    soundTheme(newValue){
+      console.log(newValue)
+
+      if(this.active){
+        this.stop() 
+        this.play(newValue)
+      } 
+    }
   }
 }
 </script>
@@ -62,15 +78,9 @@ export default {
     padding: 16px;
   }
 }
+
+.hidden{
+  display: none;
+}
 </style>
 
-// menu: https://media1.vocaroo.com/mp3/1og1THFGbREk
-// battle: https://media1.vocaroo.com/mp3/1bAS6JppM3yr
-// forest: https://media1.vocaroo.com/mp3/17EWbkf23mWC
-// store: https://media1.vocaroo.com/mp3/1d3I0NmJtzcv
-
-// attack: https://media1.vocaroo.com/mp3/13tfsmPUKrOX
-// blocked: https://media1.vocaroo.com/mp3/1cLUKrQ6Mi3I
-// item: https://media1.vocaroo.com/mp3/1OIiW6n5pcGP
-// missed: https://media1.vocaroo.com/mp3/1e2rY253BKzH
-// victory: https://media1.vocaroo.com/mp3/1fTvEgulgLaW

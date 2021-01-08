@@ -75,12 +75,7 @@ export default {
         spritesheet: 'idle' // idle, attack, hurt, died
       },
       console: 'Você está conectado',
-      sounds: {
-        attack: null,
-        impact: null,
-        iten: null,
-        audio: null
-      }
+      sounds: {}
     }
   },
 
@@ -148,10 +143,11 @@ export default {
       if(this.user.active){
 
         let dmg = attackEmiter(this.$props.socket, this.oponnent.defense)
-        this.sounds.attack.play()
 
         if(dmg == -1){
-          this.sounds.damage[1].play
+
+
+          this.sounds.blocked?.play()
           this.oponnentCounterAttack()
           this.endTurn()
           return
@@ -159,7 +155,7 @@ export default {
         
         if(dmg != 0){
 
-          this.sounds.pain.play()
+          this.sounds.attack?.play()
 
           this.oponnent.health -= dmg
           this.console = `Seu golpe causou ${dmg} de dano`
@@ -172,6 +168,7 @@ export default {
 
         }else{
           // Missed attack
+          this.sounds.missed?.play()
           this.console = 'Você errou o golpe;'
         }
 
@@ -183,7 +180,7 @@ export default {
     useCure(){
       if(this.user.hasPotion){
 
-        this.sounds.item.play()
+        this.sounds.item?.play()
 
         this.user.hasPotion = false
         let cureValue = cureEmitter(this.$props.socket, this.user.health)
@@ -240,17 +237,12 @@ export default {
     },
 
     loadSounds(){
-      this.sounds.attack = new Audio('https://media1.vocaroo.com/mp3/19Rsg33S37om')
-      //this.sounds.attack.volume = 0
-
-      this.sounds.impact = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
-      //this.sounds.impact.volume = 0
-
+      this.$store.dispatch('setSoundTheme', { amount: 'battle' })
+      this.sounds.attack = new Audio('https://media1.vocaroo.com/mp3/13tfsmPUKrOX')
+      this.sounds.missed = new Audio('https://media1.vocaroo.com/mp3/1e2rY253BKzH')
+      this.sounds.blocked = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
       this.sounds.item = new Audio('https://media1.vocaroo.com/mp3/16RNLg7yTKVb')
-      //this.sounds.item.volume = 0
-
-      this.sounds.pain = new Audio('https://media1.vocaroo.com/mp3/1kfZcK3ZOdX4')
-      //this.sounds.pain.volume = 0
+      //this.sounds.pain = new Audio('https://media1.vocaroo.com/mp3/1kfZcK3ZOdX4')
     }
   },
 
@@ -261,7 +253,11 @@ export default {
 
       this.$props.socket.on('startGame', () => {
         this.startGame()
-        this.loadSounds()
+
+        // Load the battle sound effects
+        if(this.$store.state.sound.active){
+          this.loadSounds()
+        }
       })
 
       this.$props.socket.on('turnOn', () => {
@@ -272,8 +268,8 @@ export default {
       // Inflinct damage in the player
       this.$props.socket.on('damage', (dmg) => {
         this.oponnent.spritesheet = 'attack'
-        this.sounds.attack.play()
-        this.sounds.pain.play()
+        this.sounds.attack?.play()
+        //this.sounds.pain?.play()
 
           setTimeout(() => {
             this.oponnent.spritesheet = 'idle'

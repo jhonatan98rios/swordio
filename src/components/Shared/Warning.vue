@@ -1,6 +1,6 @@
 <template>
   <div class="glass warning">
-    <span class="close" @click="$store.commit('setWarning', null)">&times;</span>
+    <span class="close" @click="close">&times;</span>
     <p> {{ warning }} </p>
   </div>
 </template>
@@ -11,6 +11,11 @@ export default {
     warning: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    close(){
+      this.$store.dispatch('setWarning', { amount: null })
     }
   }
 }
