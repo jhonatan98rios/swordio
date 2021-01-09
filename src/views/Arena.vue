@@ -42,6 +42,7 @@ import Painel from '@/components/Arena/Painel.vue'
 import Loading from '@/components/Arena/Loading.vue'
 import Controls from '@/components/Arena/Controls.vue'
 import { attackEmiter, cureEmitter, defenseEmitter } from '../scripts/emitters'
+//import sounds from '../scripts/sounds'
 
 export default {
   components:{
@@ -106,7 +107,6 @@ export default {
       if(this.user.health <= 0){    
 
         this.oponnent.spritesheet = 'died'
-        console.log(this.oponnent.spritesheet)
         this.console = 'Você perdeu!'
         this.user.health = 0
         this.$props.socket.emit('logout')
@@ -146,8 +146,7 @@ export default {
 
         if(dmg == -1){
 
-
-          this.sounds.blocked?.play()
+          this.playSound('blocked')
           this.oponnentCounterAttack()
           this.endTurn()
           return
@@ -155,8 +154,7 @@ export default {
         
         if(dmg != 0){
 
-          this.sounds.attack?.play()
-
+          this.playSound('attack')
           this.oponnent.health -= dmg
           this.console = `Seu golpe causou ${dmg} de dano`
           if (dmg > 15) this.console += '\nAtaque crítico!'
@@ -168,7 +166,7 @@ export default {
 
         }else{
           // Missed attack
-          this.sounds.missed?.play()
+          this.playSound('missed')
           this.console = 'Você errou o golpe;'
         }
 
@@ -180,7 +178,7 @@ export default {
     useCure(){
       if(this.user.hasPotion){
 
-        this.sounds.item?.play()
+        this.playSound('item')
 
         this.user.hasPotion = false
         let cureValue = cureEmitter(this.$props.socket, this.user.health)
@@ -237,12 +235,16 @@ export default {
     },
 
     loadSounds(){
-      this.$store.dispatch('setSoundTheme', { amount: 'battle' })
       this.sounds.attack = new Audio('https://media1.vocaroo.com/mp3/13tfsmPUKrOX')
       this.sounds.missed = new Audio('https://media1.vocaroo.com/mp3/1e2rY253BKzH')
       this.sounds.blocked = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
       this.sounds.item = new Audio('https://media1.vocaroo.com/mp3/16RNLg7yTKVb')
-      //this.sounds.pain = new Audio('https://media1.vocaroo.com/mp3/1kfZcK3ZOdX4')
+    },
+
+    playSound(sound){
+      if(this.sounds[sound] && this.$store.state.sound.active ){
+        this.sounds[sound].play()
+      } 
     }
   },
 
@@ -255,9 +257,7 @@ export default {
         this.startGame()
 
         // Load the battle sound effects
-        if(this.$store.state.sound.active){
-          this.loadSounds()
-        }
+        this.loadSounds()
       })
 
       this.$props.socket.on('turnOn', () => {
@@ -268,12 +268,12 @@ export default {
       // Inflinct damage in the player
       this.$props.socket.on('damage', (dmg) => {
         this.oponnent.spritesheet = 'attack'
-        this.sounds.attack?.play()
-        //this.sounds.pain?.play()
 
-          setTimeout(() => {
-            this.oponnent.spritesheet = 'idle'
-          }, 630)
+        this.playSound('attack')
+
+        setTimeout(() => {
+          this.oponnent.spritesheet = 'idle'
+        }, 630)
         this.damage(dmg)
       })
 

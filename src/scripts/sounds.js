@@ -1,17 +1,16 @@
 let sounds = {
   default: new Audio('https://media1.vocaroo.com/mp3/1og1THFGbREk'),
-  battle: new Audio('https://media1.vocaroo.com/mp3/17EWbkf23mWC'),
+  //battle: new Audio('https://media1.vocaroo.com/mp3/17EWbkf23mWC'),
+  //forest: new Audio('https://media1.vocaroo.com/mp3/17EWbkf23mWC'),
   //store: new Audio('https://media1.vocaroo.com/mp3/1d3I0NmJtzcv'),
-  //blocked: new Audio('https://media1.vocaroo.com/mp3/1cLUKrQ6Mi3I'),
-  //item: new Audio('https://media1.vocaroo.com/mp3/1OIiW6n5pcGP'),
-  //missed: new Audio('https://media1.vocaroo.com/mp3/1e2rY253BKzH'),
-  //victory: new Audio('https://media1.vocaroo.com/mp3/1fTvEgulgLaW'),
 }
 
 sounds.default.loop = true
-sounds.battle.loop = true
+//sounds.battle.loop = true
 //sounds.forest.loop = true
 //sounds.store.loop = true
+
+sounds.default.volume = 0.3
 
 function stopSounds(){
   Object.keys(sounds).forEach( key => {
@@ -24,7 +23,6 @@ module.exports = {
   sounds,
   stopSounds
 }
-
 
 // default: https://media1.vocaroo.com/mp3/1og1THFGbREk
 // battle: https://media1.vocaroo.com/mp3/1bAS6JppM3yr

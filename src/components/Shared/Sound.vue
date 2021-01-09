@@ -38,9 +38,6 @@ export default {
     },
 
     play(s){
-      console.log()
-
-      this.$store.dispatch('setSoundTheme', { amount: s })
       this.$store.dispatch('setSoundState', { amount: true })
       sounds[s].play()
     },
@@ -48,18 +45,6 @@ export default {
     stop(){
       this.$store.dispatch('setSoundState', { amount: false })
       stopSounds()
-    },
-
-  },
-
-  watch: {
-    soundTheme(newValue){
-      console.log(newValue)
-
-      if(this.active){
-        this.stop() 
-        this.play(newValue)
-      } 
     }
   }
 }
