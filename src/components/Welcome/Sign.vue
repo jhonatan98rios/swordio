@@ -41,29 +41,31 @@ export default {
 
       this.$store.dispatch('setWarning', { amount: null })
 
-      axios.post(`https://rpg-socket.herokuapp.com/sign`, {
+      /* https://rpg-socket.herokuapp.com/sign */
+
+      axios.post(`http://localhost:3000/sign`, {
         user_name: this.user,
         user_pass: this.pass
       })
       .then((response) => {
 
         if(response.status == 200){
+
+          this.$store.dispatch('setWarning', {
+            amount: response.data
+          })
+
           this.user = null
           this.pass = null
-  
-          this.$store.dispatch('setWarning', {
-            amount: 'Sua conta foi criada com sucesso!'
-          })
           this.$emit('changeHasAccount')
 
-        }else{
-          this.$store.dispatch('setWarning', {
-            amount: 'Houve um problema com a criação da sua conta'
-          })
         }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
+        this.$store.dispatch('setWarning', {
+          amount:'O usuário já existe. Tente outro'
+        })
       });
     }
   }

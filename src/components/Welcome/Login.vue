@@ -31,7 +31,7 @@ export default {
         })
         
 
-        axios.post(`https://rpg-socket.herokuapp.com/login`, {
+        axios.post(`http://localhost:3000/login`, {
           user_name: this.user,
           user_pass: this.pass
         })
@@ -39,26 +39,24 @@ export default {
 
           if(response.status == 200){
 
-            setToken(response.data.token, this.user)
-            this.pass = null
-            
             this.$store.dispatch('setWarning', {
               amount: 'Seja bem vindo!'
             })
-            
-            this.$router.push('salas')                                   
-          }else{
-            this.$store.dispatch('setWarning', {
-              amount: 'Erro ao se conectar. Verifique seus dados e sua conexão e tente novamente'
-            })
-            
+
+            setToken(response.data.token, this.user)
+            this.pass = null
+            this.$router.push('salas')
+
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(() => {
+
+          this.$store.dispatch('setWarning', {
+            amount: 'Usuário não encontrado'
+          })
+        })
       }
-    },
+    }
   }
 }
 </script>
