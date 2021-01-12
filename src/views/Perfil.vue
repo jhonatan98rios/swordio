@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     getExp(){
-      this.$store.dispatch('setPerfilState', { xp: 5 })
+      this.$store.dispatch('setExpState', { xp: 5 })
     }
   }
 }

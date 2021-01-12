@@ -35,7 +35,11 @@ export default new Vuex.Store({
       state.sound.active = newState
     },
 
-    setPerfilState(state, xp){
+    setPerfilState(state, newState){
+      state.perfil = newState
+    },
+
+    setExpState(state, xp){
       state.perfil.xp += xp
 
       // Upgrade nivel
@@ -60,6 +64,7 @@ export default new Vuex.Store({
     setWarning: ({ commit }, data) => commit('setWarning', data.amount),
     setSoundTheme: ({commit}, data) => commit('setSoundTheme', data.amount),
     setSoundState: ({commit}, data) => commit('setSoundState', data.amount),
-    setPerfilState: ({commit}, data) => commit('setPerfilState', data.xp)
+    setPerfilState: ({commit}, data) => commit('setPerfilState', data.amount),
+    setExpState: ({commit}, data) => commit('setExpState', data.xp)
   }
 })
