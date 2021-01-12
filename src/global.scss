@@ -1,3 +1,5 @@
+@import './assets/styles/spacings.scss';
+
 *, body, p{
   font-family: sans-serif;
 }
@@ -118,6 +120,14 @@ input{
 
 .m-b-8{
   margin-bottom: 8px !important;
+}
+
+.m-b-16{
+  margin-bottom: 16px !important;
+}
+
+.m-b-32{
+  margin-bottom: 32px !important;
 }
 
 .p-t-64{

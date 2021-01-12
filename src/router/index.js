@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Welcome from '../views/Welcome.vue'
 import RoomCreation from '../views/RoomCreation.vue'
 import Arena from '../views/Arena.vue'
+import Perfil from '../views/Perfil.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/arena',
     name: 'Arena',
     component: Arena
+  },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    component: Perfil
   },
 ]
 
