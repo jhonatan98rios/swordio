@@ -52,12 +52,13 @@ export default {
         if(response.status == 200){
 
           this.$store.dispatch('setWarning', {
-            amount: response.data
+            amount: response.data.warning
           })
 
           this.user = null
           this.pass = null
           this.$emit('changeHasAccount')
+          this.setPerfil(response.data.perfil)
 
         }
       })
@@ -67,6 +68,12 @@ export default {
           amount:'O usuário já existe. Tente outro'
         })
       });
+    },
+
+    setPerfil: function( perfil ){    
+      this.$store.dispatch('setPerfilState', {
+        amount: perfil
+      })
     }
   }
 }

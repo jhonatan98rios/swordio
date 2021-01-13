@@ -48,6 +48,7 @@ export default {
 
           setToken(response.data.token, username)
           this.$router.push('salas')
+          this.setPerfil(response.data.perfil)
 
         }else{
           this.$store.dispatch('setWarning', {
@@ -58,6 +59,11 @@ export default {
       .catch((error) => {
       console.log(error);
       });
+    },
+    setPerfil: function( perfil ){    
+      this.$store.dispatch('setPerfilState', {
+        amount: perfil
+      })
     }
   },
   mounted(){

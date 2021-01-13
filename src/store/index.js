@@ -11,7 +11,8 @@ export default new Vuex.Store({
       active: false,
       theme: 'default'
     },
-    perfil: {
+    perfil: null
+    /* perfil: {
       nv: 1,
       xp: 0,
       next: 10,
@@ -19,22 +20,10 @@ export default new Vuex.Store({
       attack: 10,
       defence: 1,
       points: 0
-    }
+    } */
   },
 
   mutations: {
-    setWarning(state, newState){
-      state.warning = newState
-    },
-
-    setSoundTheme(state, newState){
-      state.sound.theme = newState
-    },
-
-    setSoundState(state, newState){
-      state.sound.active = newState
-    },
-
     setPerfilState(state, newState){
       state.perfil = newState
     },
@@ -57,14 +46,26 @@ export default new Vuex.Store({
       /* axios.post('', { perfil: state.perfil }).then((response) => {
         console.log(response)
       }) */
+    },
+
+    setWarning(state, newState){
+      state.warning = newState
+    },
+
+    setSoundTheme(state, newState){
+      state.sound.theme = newState
+    },
+
+    setSoundState(state, newState){
+      state.sound.active = newState
     }
   },
 
   actions: {
+    setPerfilState: ({commit}, data) => commit('setPerfilState', data.amount),
+    setExpState: ({commit}, data) => commit('setExpState', data.xp),
     setWarning: ({ commit }, data) => commit('setWarning', data.amount),
     setSoundTheme: ({commit}, data) => commit('setSoundTheme', data.amount),
-    setSoundState: ({commit}, data) => commit('setSoundState', data.amount),
-    setPerfilState: ({commit}, data) => commit('setPerfilState', data.amount),
-    setExpState: ({commit}, data) => commit('setExpState', data.xp)
+    setSoundState: ({commit}, data) => commit('setSoundState', data.amount)
   }
 })

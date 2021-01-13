@@ -1,5 +1,5 @@
 <template>
-  <div class="perfil">
+  <div class="perfil" v-if="perfil">
     <h2 class="text-white title m-b-32"> Perfil </h2>
     <ul class="list">
       <li class="text-white"> NV: {{ perfil.nv }} </li>
@@ -19,7 +19,7 @@
 export default {
   computed: {
     perfil(){
-      return this.$store.state.perfil
+      return this.$store.state.perfil ? this.$store.state.perfil : null
     }
   },
   methods: {

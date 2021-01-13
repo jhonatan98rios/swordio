@@ -56,13 +56,4 @@ export default {
 <style lang="scss">
 @import 'global.scss';
 
-/* #app{
-  background-image: url(./assets/images/wallpaper.jpg);
-  background-size: cover;
-  height: 100vh;
-  background-position: top right;
-  margin: 0px;
-  display: inline-block;
-} */
-
 </style>

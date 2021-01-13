@@ -46,7 +46,7 @@ export default {
             setToken(response.data.token, this.user)
             this.pass = null
             this.$router.push('salas')
-
+            this.setPerfil(response.data.perfil)
           }
         })
         .catch(() => {
@@ -56,6 +56,11 @@ export default {
           })
         })
       }
+    },
+    setPerfil: function( perfil ){    
+      this.$store.dispatch('setPerfilState', {
+        amount: perfil
+      })
     }
   }
 }
