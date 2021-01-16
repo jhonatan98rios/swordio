@@ -11,6 +11,7 @@
         <div class="life-bar m-l-8 m-t-2">
           <span :style="userLife" />
         </div>
+        {{ health }}
       </div>
     </div>
 
@@ -48,7 +49,7 @@ export default {
   computed: {
     userLife(){
       return{
-        width: this.health / 2 + '%',
+        width: this.$props.health / (this.$props.health / 100) + '%',
         backgroundColor: `rgb(${ 200 - this.health }, ${ this.health }, 0)`
       }
     }

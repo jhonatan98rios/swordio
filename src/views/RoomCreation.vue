@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import { getToken } from '../scripts/token'
 
 export default {
   data(){
@@ -44,10 +43,7 @@ export default {
   },
 
   mounted(){
-
-    let key = getToken()
-
-    if(!key){
+    if(!this.$store.state.perfil){
       this.$router.push('/')
     }
   }

@@ -40,8 +40,8 @@ export default {
   },
 
   mounted(){
-
-    this.socket = io('https://rpg-socket.herokuapp.com');
+    //https://rpg-socket.herokuapp.com
+    this.socket = io('http://localhost:3000');
 
     // First event in connection (default)
     this.socket.on('connect', () => {

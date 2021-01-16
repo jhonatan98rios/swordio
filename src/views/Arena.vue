@@ -1,11 +1,12 @@
 <template>
   <div>
-    <Loading v-if="inLoading" />
-    <div v-if="!inLoading">
+
+    <Loading v-if="!user || !oponnent || inLoading" />
+    <div v-if="user && oponnent && !inLoading">
 
       <div>
         <Header 
-          :health="oponnent.health"
+          :health="oponnent.hp"
         />
 
         <OponnentView 
@@ -17,7 +18,7 @@
           :counter="counter" 
           :console="console" 
           :active="user.active"
-          :health="user.health"
+          :health="user.hp"
         />
       </div>
 
@@ -42,7 +43,6 @@ import Painel from '@/components/Arena/Painel.vue'
 import Loading from '@/components/Arena/Loading.vue'
 import Controls from '@/components/Arena/Controls.vue'
 import { attackEmiter, cureEmitter, defenseEmitter } from '../scripts/emitters'
-//import sounds from '../scripts/sounds'
 
 export default {
   components:{
@@ -64,16 +64,10 @@ export default {
       inLoading: true,
       inProgress: false,
       counter: 0,
-      user:{
-        health: 200,
-        active: false,
-        defense: false,
-        hasPotion: true
-      },
+      user: {},
       oponnent: {
-        health: 200,
-        defense: false,
-        spritesheet: 'idle' // idle, attack, hurt, died
+        hp: 200,
+        spritesheet: 'idle'
       },
       console: 'Você está conectado',
       sounds: {}
@@ -88,15 +82,31 @@ export default {
 
   methods: {
 
+    initPlayers: function(perfil){
+      this.user = {
+        ...this.perfilState,
+        active: false,
+        defense: false,
+        hasPotion: true
+      }
+
+      this.oponnent = {
+        ...perfil,
+        spritesheet: 'idle',
+        defense: false
+      }
+
+      console.log('this.user')
+      console.log(this.user)
+
+      console.log('this.oponnent')
+      console.log(this.oponnent)
+    },
+
     startGame: function(){
-
-      this.user.nv = this.perfilState.nv
-      this.user.health = this.perfilState.hp
-      this.user.attack = this.perfilState.attack
-      this.user.defense = this.perfilState.defense
-
-      this.oponnent.health = 200
-
+      if(this.oponnent.nv >= this.user.nv){
+        this.user.active = true
+      }
 
       this.inProgress = true
       this.inLoading = false
@@ -104,6 +114,12 @@ export default {
 
 
     damage: function (dmg) {
+
+      this.oponnent.spritesheet = 'attack'
+      this.playSound('attack')
+
+      setTimeout(() => this.oponnent.spritesheet = 'idle', 630)
+
       this.user.active = true
 
       if(this.user.defense && dmg == -1){
@@ -111,33 +127,33 @@ export default {
         return
       }
 
-      this.user.health -= dmg;
+      this.user.hp -= dmg;
 
       if(dmg > 0) this.console = `Você perdeu ${dmg} pontos de HP. `
       if(dmg > 15) this.console += ' Ataque crítico!'      
       if(dmg <= 0) this.console = `Você se esquivou do golpe`
 
-      if(this.user.health <= 0){    
+      if(this.user.hp <= 0){    
 
         this.oponnent.spritesheet = 'died'
         this.console = 'Você perdeu!'
-        this.user.health = 0
+        this.user.hp = 0
         this.$props.socket.emit('logout')
       }
     },
 
 
     oponnentCure: function(cureValue){
-      this.oponnent.health += cureValue
+      this.oponnent.hp += cureValue
       this.console = `Seu oponente usou uma poção de cura. Ele recuperou ${cureValue} pontos de vida`
     },
 
 
     oponnentCounterAttack: function(){
       this.oponnent.defense = false
-      this.user.health -= 20
+      this.user.hp -= 20
       this.console = 'Seu oponente contra atacou. Você recebeu 20 pontos de dano'
-      if(this.user.health <= 0){
+      if(this.user.hp <= 0){
         alert('Você perdeu!')
         //this.console = 'Você perdeu!'
         this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
@@ -149,7 +165,7 @@ export default {
 
     userCounterAttack: function(){
       this.user.defense = false
-      this.oponnent.health -= 20
+      this.oponnent.hp -= 20
       this.console = 'Você contra atacou. Seu oponente recebeu 20 pontos de dano'
     },
 
@@ -170,7 +186,7 @@ export default {
         if(dmg != 0){
 
           this.playSound('attack')
-          this.oponnent.health -= dmg
+          this.oponnent.hp -= dmg
           this.console = `Seu golpe causou ${dmg} de dano`
           if (dmg > 15) this.console += '\nAtaque crítico!'
 
@@ -196,8 +212,8 @@ export default {
         this.playSound('item')
 
         this.user.hasPotion = false
-        let cureValue = cureEmitter(this.$props.socket, this.user.health)
-        this.user.health += cureValue
+        let cureValue = cureEmitter(this.$props.socket, this.user.hp)
+        this.user.hp += cureValue
         this.console = `Você usou uma poção de cura e recuperou ${cureValue} pontos de vida`
         this.endTurn()
 
@@ -266,15 +282,6 @@ export default {
       } 
     },
 
-    getOponnentState: function(){
-
-      this.$props.socket.emit('sendPerfilData', this.perfilState)
-
-      // Use socketio to biding data between players
-      let oponnentState = null
-
-      this.$store.dispatch('setOponnentState', { amount: oponnentState })
-    }
   },
 
 
@@ -282,10 +289,14 @@ export default {
 
     if(this.$props.socket){
 
-      this.$props.socket.on('startGame', () => {
-        this.startGame()
+      this.$props.socket.on('dataBinding', () => {
+        this.$props.socket.emit('sendPlayerData', this.perfilState)
+      })
 
-        // Load the battle sound effects
+      this.$props.socket.on('startGame', (perfil) => {
+        //console.log('start game')
+        this.initPlayers(perfil)
+        this.startGame()
         this.loadSounds()
       })
 
@@ -296,13 +307,6 @@ export default {
 
       // Inflinct damage in the player
       this.$props.socket.on('damage', (dmg) => {
-        this.oponnent.spritesheet = 'attack'
-
-        this.playSound('attack')
-
-        setTimeout(() => {
-          this.oponnent.spritesheet = 'idle'
-        }, 630)
         this.damage(dmg)
       })
 
@@ -319,7 +323,7 @@ export default {
 
       // When you win a battle
       this.$props.socket.on('win', () => {
-        this.oponnent.health = 0
+        this.oponnent.hp = 0
         clearInterval(this.turnTimer)
         this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
         this.gotExp(10)

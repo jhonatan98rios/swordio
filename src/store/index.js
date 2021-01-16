@@ -11,8 +11,7 @@ export default new Vuex.Store({
       active: false,
       theme: 'default'
     },
-    perfil: null,
-    oponnent: null
+    perfil: null
   },
 
   mutations: {
@@ -49,10 +48,6 @@ export default new Vuex.Store({
       })
     },
 
-    setOponnentState(state, newState){
-      state.perfil = newState
-    },
-
     setWarning(state, newState){
       state.warning = newState
     },
@@ -69,7 +64,6 @@ export default new Vuex.Store({
   actions: {
     setPerfilState: ({commit}, data) => commit('setPerfilState', data.amount),
     setExpState: ({commit}, data) => commit('setExpState', data.xp),
-    setOponnentState: ({commit}, data) => commit('setOponnentState', data.amount),
     setWarning: ({ commit }, data) => commit('setWarning', data.amount),
     setSoundTheme: ({commit}, data) => commit('setSoundTheme', data.amount),
     setSoundState: ({commit}, data) => commit('setSoundState', data.amount)

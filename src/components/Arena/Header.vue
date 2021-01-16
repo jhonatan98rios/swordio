@@ -7,6 +7,7 @@
         <div class="life-bar m-l-8 m-t-2">
           <span :style="oponnentLife" />
         </div>
+        {{ health }}
       </div>
     </div>
   </div>
@@ -25,7 +26,7 @@ export default {
   computed: {
     oponnentLife(){
       return{
-        width: this.$props.health / 2 + '%',
+        width: this.$props.health / (this.$props.health / 100) + '%',
         backgroundColor: `rgb(${ 200 - this.$props.health }, ${ this.$props.health }, 0)`
       }
     }

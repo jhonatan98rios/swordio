@@ -14,8 +14,8 @@ Criar menu de navegação para tela de perfil ✓
 Adicionar botão de audio ao menu ✓
 Adicionar método de update xp ao fim de cada partida ✓
 Adicionar alerta ao fim das batalhas ✓
+Coletar dados do oponnente em cada inicio de batalha ✓
 
-Coletar dados do oponnente em cada inicio de batalha
 Integrar ataque ao perfil.attack
 Integrar defesa ao oponnent.defense
 
