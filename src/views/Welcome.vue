@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     loginAccountWithToken: function(username, token){
-      axios.post(`https://rpg-socket.herokuapp.com/token_login`, {
+      axios.post(`http://localhost:3000/token_login`, {
         user_name: username,
         token
       })
@@ -60,7 +60,8 @@ export default {
       console.log(error);
       });
     },
-    setPerfil: function( perfil ){    
+    setPerfil: function( perfil ){
+      console.log(perfil)    
       this.$store.dispatch('setPerfilState', {
         amount: perfil
       })

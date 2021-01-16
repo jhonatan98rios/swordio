@@ -1,4 +1,4 @@
-//import axios from 'axios'
+import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -11,16 +11,8 @@ export default new Vuex.Store({
       active: false,
       theme: 'default'
     },
-    perfil: null
-    /* perfil: {
-      nv: 1,
-      xp: 0,
-      next: 10,
-      hp: 100,
-      attack: 10,
-      defence: 1,
-      points: 0
-    } */
+    perfil: null,
+    oponnent: null
   },
 
   mutations: {
@@ -31,8 +23,10 @@ export default new Vuex.Store({
     setExpState(state, xp){
       state.perfil.xp += xp
 
+      let hasLavelUp = state.perfil.xp >= state.perfil.next 
+
       // Upgrade nivel
-      if(state.perfil.xp >= state.perfil.next){
+      if(hasLavelUp){
         state.perfil.nv ++
         state.perfil.xp = state.perfil.xp - state.perfil.next
         // Upgrade states
@@ -40,12 +34,23 @@ export default new Vuex.Store({
         state.perfil.hp = Math.ceil( state.perfil.hp * 1.2 )
         state.perfil.attack = Math.ceil( state.perfil.attack * 1.2 )
         state.perfil.defence = Math.ceil( state.perfil.defence * 1.2 )
-        state.warning = 'Parabéns, você subiu de nível!!'
       }
 
-      /* axios.post('', { perfil: state.perfil }).then((response) => {
-        console.log(response)
-      }) */
+      axios.post('http://localhost:3000/level_up', { 
+        perfil: state.perfil
+
+      }).then((response) => {
+        
+        if(response.status == 200 && hasLavelUp){
+          state.warning = response.data
+        }
+      }).catch(() => {
+        state.warning = 'Falha ao atualizar seu perfil'
+      })
+    },
+
+    setOponnentState(state, newState){
+      state.perfil = newState
     },
 
     setWarning(state, newState){
@@ -64,6 +69,7 @@ export default new Vuex.Store({
   actions: {
     setPerfilState: ({commit}, data) => commit('setPerfilState', data.amount),
     setExpState: ({commit}, data) => commit('setExpState', data.xp),
+    setOponnentState: ({commit}, data) => commit('setOponnentState', data.amount),
     setWarning: ({ commit }, data) => commit('setWarning', data.amount),
     setSoundTheme: ({commit}, data) => commit('setSoundTheme', data.amount),
     setSoundState: ({commit}, data) => commit('setSoundState', data.amount)

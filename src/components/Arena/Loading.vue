@@ -16,7 +16,7 @@ export default {}
   padding: 32px;
   max-width: 400px;
   border-radius: 8px;
-  margin-top: 15vh;
+  margin-top: 15vh !important;
 
   h2{
     color: #fff;

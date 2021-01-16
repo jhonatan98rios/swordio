@@ -80,11 +80,24 @@ export default {
     }
   },
 
+  computed: {
+    perfilState(){
+      return this.$store.state.perfil
+    }
+  },
+
   methods: {
 
     startGame: function(){
-      this.user.health = 200
+
+      this.user.nv = this.perfilState.nv
+      this.user.health = this.perfilState.hp
+      this.user.attack = this.perfilState.attack
+      this.user.defense = this.perfilState.defense
+
       this.oponnent.health = 200
+
+
       this.inProgress = true
       this.inLoading = false
     },
@@ -126,7 +139,9 @@ export default {
       this.console = 'Seu oponente contra atacou. Você recebeu 20 pontos de dano'
       if(this.user.health <= 0){
         alert('Você perdeu!')
-        this.console = 'Você perdeu!'
+        //this.console = 'Você perdeu!'
+        this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
+        this.gotExp(5) 
         this.$props.socket.emit('logout')
       }
     },
@@ -175,7 +190,7 @@ export default {
     },
 
 
-    useCure(){
+    useCure: function(){
       if(this.user.hasPotion){
 
         this.playSound('item')
@@ -192,7 +207,7 @@ export default {
     },
 
 
-    useDefense(){
+    useDefense: function(){
       this.user.defense = true
       this.console = `Você se preparou para defender`
       defenseEmitter(this.$props.socket)
@@ -200,7 +215,7 @@ export default {
     },
 
 
-    unavailable(){
+    unavailable: function(){
       this.console = `Essa função ainda não está disponível`
     },
 
@@ -226,7 +241,7 @@ export default {
     },
 
 
-    endTurn(){
+    endTurn: function(){
       clearInterval(this.turnTimer)
       this.oponnent.defense = false
       this.user.active = false
@@ -234,17 +249,31 @@ export default {
       this.counter = 0
     },
 
-    loadSounds(){
+    gotExp: function(xp){
+      this.$store.dispatch('setExpState', { xp })
+    },
+
+    loadSounds: function(){
       this.sounds.attack = new Audio('https://media1.vocaroo.com/mp3/13tfsmPUKrOX')
       this.sounds.missed = new Audio('https://media1.vocaroo.com/mp3/1e2rY253BKzH')
       this.sounds.blocked = new Audio('https://media1.vocaroo.com/mp3/1oBYEk6es0Yi')
       this.sounds.item = new Audio('https://media1.vocaroo.com/mp3/16RNLg7yTKVb')
     },
 
-    playSound(sound){
+    playSound: function(sound){
       if(this.sounds[sound] && this.$store.state.sound.active ){
         this.sounds[sound].play()
       } 
+    },
+
+    getOponnentState: function(){
+
+      this.$props.socket.emit('sendPerfilData', this.perfilState)
+
+      // Use socketio to biding data between players
+      let oponnentState = null
+
+      this.$store.dispatch('setOponnentState', { amount: oponnentState })
     }
   },
 
@@ -290,9 +319,10 @@ export default {
 
       // When you win a battle
       this.$props.socket.on('win', () => {
-        this.console += '\nVocê venceu!!'
         this.oponnent.health = 0
         clearInterval(this.turnTimer)
+        this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
+        this.gotExp(10)
       })
       
     }else{

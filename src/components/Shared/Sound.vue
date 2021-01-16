@@ -1,11 +1,7 @@
 <template>
-  <div class="sound-menu">
-    <img 
-      class="sound-button" 
-      src="../../assets/images/sound.png" 
-      alt="Tocar audio"
-      @click="toggleSound"
-    >
+  <div class="sound-controller">
+    <p @click="toggleSound" v-if="soundState"> Desativar som </p>
+    <p @click="toggleSound" v-else> Ativar som </p>
   </div>
 </template>
 
@@ -51,16 +47,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sound-menu{
-  position: fixed;
-  top: 0;
-  right: 0;
-
-  .sound-button{
-    width: 24px;
-    height: 24px;
-    filter: invert(1);
-    padding: 16px;
+.sound-controller{
+  p{
+    color: #fff;
+    cursor: pointer;
   }
 }
 
