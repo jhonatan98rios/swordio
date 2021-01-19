@@ -15,7 +15,8 @@ Adicionar botão de audio ao menu ✓
 Adicionar método de update xp ao fim de cada partida ✓
 Adicionar alerta ao fim das batalhas ✓
 Coletar dados do oponnente em cada inicio de batalha ✓
+Integrar ataque ao perfil.attack ✓
+Integrar defesa ao oponnent.defense ✓
+Integrar hp ao hp do perfil e oponente ✓
 
-Integrar ataque ao perfil.attack
-Integrar defesa ao oponnent.defense
-
+Corrigir animação de morte

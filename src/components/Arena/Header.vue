@@ -15,7 +15,11 @@
 
 <script>
 export default {
-
+  data(){
+    return {
+      maxHealth: 0
+    }
+  },
   props: {
     health: {
       type: Number,
@@ -25,11 +29,19 @@ export default {
 
   computed: {
     oponnentLife(){
+      let damage = this.maxHealth - this.$props.health
+      let damagePercentage = (damage / (this.maxHealth / 100))
+      let width = (this.$props.health / (this.$props.health / 100)) - damagePercentage
+
       return{
-        width: this.$props.health / (this.$props.health / 100) + '%',
+        width: width + '%',
         backgroundColor: `rgb(${ 200 - this.$props.health }, ${ this.$props.health }, 0)`
       }
     }
+  },
+
+  mounted(){
+    this.maxHealth = this.$props.health
   }
 };
 </script>

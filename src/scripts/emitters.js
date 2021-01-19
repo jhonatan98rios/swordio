@@ -1,4 +1,4 @@
-function attackEmiter(socket, blocking) {
+function attackEmiter(socket, blocking, attack, oponnentDefense) {
 
   let precision = Math.floor(Math.random() * 20)
   let damage = Number()
@@ -6,17 +6,16 @@ function attackEmiter(socket, blocking) {
   if(!blocking){
     // If the oponnent wasnt blocking, u can apply full damage
     damage = precision < 3 ? 0 :
-      precision <= 10 ? Math.floor(Math.random() * 5) + 5 :
-        precision <= 15 ? Math.floor(Math.random() * 5) + 10 :
-          Math.floor(Math.random() * 10) + 15
+      precision <= 10 ? Math.floor(Math.random() * 5) + attack - oponnentDefense :
+        precision <= 15 ? Math.floor(Math.random() * 5) + 10 + attack - oponnentDefense :
+          Math.floor(Math.random() * 10) + 15 + attack - oponnentDefense
   }else{
     // If the oponent was blocking, u can apply, just half damage, or receive a counter
     damage = precision <= 7 ? -1 :
-      precision <= 12 ? Math.floor((Math.random() * 5 + 5) / 2) :
-        precision <= 18 ? Math.floor((Math.random() * 5 + 10) / 2) :
-          Math.floor((Math.random() * 10 + 15) / 2)
+      precision <= 12 ? Math.floor((Math.random() * 5 + attack - oponnentDefense) / 2) :
+        precision <= 18 ? Math.floor((Math.random() * 5 + 10 + attack - oponnentDefense) / 2) :
+          Math.floor((Math.random() * 10 + 15 + attack - oponnentDefense) / 2)
   }
-
 
   socket.emit('attack', damage)
 

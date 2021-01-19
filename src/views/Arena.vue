@@ -86,14 +86,14 @@ export default {
       this.user = {
         ...this.perfilState,
         active: false,
-        defense: false,
+        blocking: false,
         hasPotion: true
       }
 
       this.oponnent = {
         ...perfil,
         spritesheet: 'idle',
-        defense: false
+        blocking: false
       }
 
       console.log('this.user')
@@ -122,7 +122,7 @@ export default {
 
       this.user.active = true
 
-      if(this.user.defense && dmg == -1){
+      if(this.user.blocking && dmg == -1){
         this.userCounterAttack()
         return
       }
@@ -150,8 +150,8 @@ export default {
 
 
     oponnentCounterAttack: function(){
-      this.oponnent.defense = false
-      this.user.hp -= 20
+      this.oponnent.blocking = false
+      this.user.hp -= this.oponnent.attack
       this.console = 'Seu oponente contra atacou. Você recebeu 20 pontos de dano'
       if(this.user.hp <= 0){
         alert('Você perdeu!')
@@ -164,8 +164,8 @@ export default {
 
 
     userCounterAttack: function(){
-      this.user.defense = false
-      this.oponnent.hp -= 20
+      this.user.blocking = false
+      this.oponnent.hp -= this.user.attack
       this.console = 'Você contra atacou. Seu oponente recebeu 20 pontos de dano'
     },
 
@@ -173,7 +173,7 @@ export default {
     attack: function(){
       if(this.user.active){
 
-        let dmg = attackEmiter(this.$props.socket, this.oponnent.defense)
+        let dmg = attackEmiter(this.$props.socket, this.oponnent.blocking, this.user.attack, this.oponnent.defense)
 
         if(dmg == -1){
 
@@ -224,21 +224,15 @@ export default {
 
 
     useDefense: function(){
-      this.user.defense = true
+      this.user.blocking = true
       this.console = `Você se preparou para defender`
       defenseEmitter(this.$props.socket)
       this.endTurn()
     },
 
-
-    unavailable: function(){
-      this.console = `Essa função ainda não está disponível`
-    },
-
-
     initiateCount: function(){
       this.counter = 3
-      this.user.defense = false
+      this.user.blocking = false
 
       clearInterval(this.turnTimer)
       this.turnTimer = setInterval(() => {
@@ -259,7 +253,7 @@ export default {
 
     endTurn: function(){
       clearInterval(this.turnTimer)
-      this.oponnent.defense = false
+      this.oponnent.blocking = false
       this.user.active = false
       this.$props.socket.emit('changeTurn')
       this.counter = 0
@@ -317,7 +311,7 @@ export default {
 
       // oponnentDefense
       this.$props.socket.on('oponnentDefense', () => {
-        this.oponnent.defense = true
+        this.oponnent.blocking = true
         this.console = `Seu oponente está preparado para se defender`
       })
 
