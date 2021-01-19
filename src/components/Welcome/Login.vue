@@ -31,7 +31,7 @@ export default {
         })
         
 
-        axios.post(`http://localhost:3000/login`, {
+        axios.post(`https://rpg-socket.herokuapp.com/login`, {
           user_name: this.user,
           user_pass: this.pass
         })

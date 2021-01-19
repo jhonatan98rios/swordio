@@ -35,7 +35,7 @@ export default new Vuex.Store({
         state.perfil.defence = Math.ceil( state.perfil.defence * 1.2 )
       }
 
-      axios.post('http://localhost:3000/level_up', { 
+      axios.post('https://rpg-socket.herokuapp.com/level_up', { 
         perfil: state.perfil
 
       }).then((response) => {
