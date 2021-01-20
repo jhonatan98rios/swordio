@@ -7,7 +7,6 @@
         <div class="life-bar m-l-8 m-t-2">
           <span :style="oponnentLife" />
         </div>
-        {{ health }}
       </div>
     </div>
   </div>
@@ -34,7 +33,7 @@ export default {
       let width = (this.$props.health / (this.$props.health / 100)) - damagePercentage
 
       return{
-        width: width + '%',
+        width: (this.$props.health <= 0 ? 0 : width) + '%',
         backgroundColor: `rgb(${ 200 - this.$props.health }, ${ this.$props.health }, 0)`
       }
     }

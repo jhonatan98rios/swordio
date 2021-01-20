@@ -135,7 +135,6 @@ export default {
 
       if(this.user.hp <= 0){    
 
-        this.oponnent.spritesheet = 'died'
         this.console = 'Você perdeu!'
         this.user.hp = 0
         this.$props.socket.emit('logout')
@@ -154,8 +153,8 @@ export default {
       this.user.hp -= this.oponnent.attack
       this.console = 'Seu oponente contra atacou. Você recebeu 20 pontos de dano'
       if(this.user.hp <= 0){
-        alert('Você perdeu!')
-        //this.console = 'Você perdeu!'
+        //alert('Você perdeu!')
+        this.console = 'Você perdeu!'
         this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
         this.gotExp(5) 
         this.$props.socket.emit('logout')
@@ -192,8 +191,14 @@ export default {
 
           this.oponnent.spritesheet = 'hurt'
           setTimeout(() => {
-            this.oponnent.spritesheet = 'idle'
+            if(this.oponnent.hp <= 0){    
+              this.oponnent.spritesheet = 'died'
+
+            }else{
+              this.oponnent.spritesheet = 'idle'
+            }
           }, 630)
+
 
         }else{
           // Missed attack

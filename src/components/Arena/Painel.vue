@@ -11,7 +11,6 @@
         <div class="life-bar m-l-8 m-t-2">
           <span :style="userLife" />
         </div>
-        {{ health }}
       </div>
     </div>
 
@@ -25,6 +24,12 @@ import Console from '@/components/Arena/Console.vue'
 export default {
   components:{
     Console
+  },
+
+  data(){
+    return {
+      maxHealth: 0
+    }
   },
 
   props: {
@@ -48,11 +53,19 @@ export default {
 
   computed: {
     userLife(){
+      let damage = this.maxHealth - this.$props.health
+      let damagePercentage = (damage / (this.maxHealth / 100))
+      let width = (this.$props.health / (this.$props.health / 100)) - damagePercentage
+
       return{
-        width: this.$props.health / (this.$props.health / 100) + '%',
-        backgroundColor: `rgb(${ 200 - this.health }, ${ this.health }, 0)`
+        width: (this.$props.health <= 0 ? 0 : width) + '%',
+        backgroundColor: `rgb(${ 200 - this.$props.health }, ${ this.$props.health }, 0)`
       }
     }
+  },
+
+  mounted(){
+    this.maxHealth = this.$props.health
   }
 }
 </script>
