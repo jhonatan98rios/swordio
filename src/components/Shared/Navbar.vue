@@ -5,12 +5,13 @@
       <span/>
       <span/>
     </div>
-    <div class="nav-section" :class="{ 'visible' : activeMenu}">
+    <div class="nav-background" v-if="activeMenu" @click="activeMenu = false" /> 
+    <div class="nav-section" :class="{ 'visible' : activeMenu}" @click="activeMenu = false">
       <ul>
         <li @click="toogleMenu">
-          <router-link to="/">Inicio</router-link>
+          <router-link to="/salas">Inicio</router-link>
         </li>
-        <li @click="toogleMenu">
+        <li @click="toogleMenu" v-if="currentRoute != 'Arena'">
           <router-link to="/perfil">Perfil</router-link>
         </li>
         <li>
@@ -36,6 +37,9 @@ export default {
   computed: {
     soundState(){
       return this.$store.state.sound.active
+    },
+    currentRoute(){
+      return this.$route.name;
     }
   },
   methods: {
@@ -53,12 +57,23 @@ export default {
   height: 56px;
   width: 100%;
   background-color: rgb(0, 0, 0);
+  z-index: 99999;
+
+  .nav-background{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,.5);
+  }
 
   .burger {
     width: 25px;
     height: 20px;
     margin: 0px 15px;
     padding-top: 15px;
+    cursor: pointer;
    
     span{
       width: 25px;
@@ -80,7 +95,7 @@ export default {
     max-width: 300px;
     height: calc(100vh - 56px);
     background-color: rgba(0,0,0,.5);
-    z-index: 1;
+    z-index: 99999;
 
     ul{
       list-style: none;

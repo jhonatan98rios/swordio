@@ -9,9 +9,6 @@
       <li class="text-white"> Ataque: {{ perfil.attack }} </li>
       <li class="text-white"> Defesa: {{ perfil.defence }} </li>
       <li class="text-white"> Pontos: {{ perfil.points }} </li>
-      <button @click="getExp">
-        XP++
-      </button>
     </ul>
   </div>
 </template>
@@ -21,11 +18,6 @@ export default {
   computed: {
     perfil(){
       return this.$store.state.perfil ? this.$store.state.perfil : null
-    }
-  },
-  methods: {
-    getExp(){
-      this.$store.dispatch('setExpState', { xp: 5 })
     }
   },
   mounted(){

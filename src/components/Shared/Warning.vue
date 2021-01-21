@@ -16,6 +16,10 @@ export default {
   methods: {
     close(){
       this.$store.dispatch('setWarning', { amount: null })
+
+      if(this.$props.warning == 'Você venceu!!' || this.$props.warning == 'Você perdeu...'){
+        this.$router.push('salas')
+      }
     }
   }
 }
@@ -43,6 +47,7 @@ export default {
     right: 10px;
     top: 10px;
     color: #fff;
+    cursor: pointer;
   }
 
   p{

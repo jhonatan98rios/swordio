@@ -135,7 +135,8 @@ export default {
 
       if(this.user.hp <= 0){    
 
-        this.console = 'Você perdeu!'
+        this.console = ''
+        this.$store.dispatch('setWarning', { amount: 'Você perdeu...' })
         this.user.hp = 0
         this.$props.socket.emit('logout')
       }
