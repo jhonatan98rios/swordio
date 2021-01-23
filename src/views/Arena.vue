@@ -67,7 +67,7 @@ export default {
       user: {},
       oponnent: {
         hp: 200,
-        spritesheet: 'idle'
+        spritesheet: 'default'
       },
       console: 'Você está conectado',
       sounds: {}
@@ -92,7 +92,7 @@ export default {
 
       this.oponnent = {
         ...perfil,
-        spritesheet: 'idle',
+        spritesheet: 'default',
         blocking: false
       }
 
@@ -118,7 +118,7 @@ export default {
       this.oponnent.spritesheet = 'attack'
       this.playSound('attack')
 
-      setTimeout(() => this.oponnent.spritesheet = 'idle', 630)
+      setTimeout(() => this.oponnent.spritesheet = 'default', 630)
 
       this.user.active = true
 
@@ -196,7 +196,7 @@ export default {
               this.oponnent.spritesheet = 'died'
 
             }else{
-              this.oponnent.spritesheet = 'idle'
+              this.oponnent.spritesheet = 'default'
             }
           }, 630)
 

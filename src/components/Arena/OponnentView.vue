@@ -1,22 +1,96 @@
 <template>
   <div class="view is-centered">
 
-    <div
+    <!-- <div
       class="oponnent"
       :class="spritesheet"
       ref="oponnent"
-    />
+    /> -->
+    <canvas ref="canvas" class="oponnent" />
     
   </div>
 </template>
 
 <script>
+import sprite from '../../assets/images/default.png'
+import attackSprite from '../../assets/images/attack.png'
+import hurtSprite from '../../assets/images/hurt.png'
+import diedSprite from '../../assets/images/died.png'
 
 export default {
+  data(){
+    return {
+      context: null,
+      image: null,
+      shift: 0,
+      frameWidth: 249,
+      frameHeight: 249,
+      totalFrames: 14,
+      currentFrame: 0,
+      speed: 200
+    }
+  },
   props: {
     spritesheet: {
       type: String,
       required: true
+    }
+  },
+
+  computed: {
+    sprites(){
+      return {
+        default: sprite,
+        attack: attackSprite,
+        hurt: hurtSprite,
+        died: diedSprite
+      }
+    }
+  },
+
+  methods: {
+    animate() {
+      this.context.clearRect(0, 0, this.frameWidth, this.frameHeight);
+      this.context.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, 25, -45, this.frameWidth, this.frameHeight);
+      this.shift += this.frameWidth + 1;
+    
+      if (this.currentFrame == this.totalFrames) {
+        this.shift = 0;
+        this.currentFrame = 0;
+      }
+    
+      this.currentFrame++;
+
+      if(this.$props.spritesheet != 'died'){
+        setTimeout(this.animate, this.speed)
+      }
+    },
+
+    loadImage() {
+      console.log('Ok')
+      this.animate();
+      this.image.removeEventListener('load', this.loadImage)
+    }
+  },
+
+  mounted(){
+    this.context = this.$refs.canvas.getContext("2d");
+    this.image = new Image()
+
+    this.image.src = sprite
+    this.image.addEventListener("load", this.loadImage, false);
+    this.animate()
+  },
+
+  watch:{
+    spritesheet: function(newVal){
+      this.image.src = this.sprites[newVal]
+
+      this.shift = 0;
+      this.currentFrame = 0;
+
+      this.speed = newVal === 'default' ? 200 : 80
+      this.frameWidth = newVal === 'default' ? 249 : 251                        
     }
   }
 }
@@ -43,35 +117,13 @@ export default {
 
   .oponnent{
     max-height: 55%;
-    width: 320px;
-    height: 320px;
+    width: 350px;
+    height: 180px;
     margin-top: 35vh;
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position-x: 30px;
-    background-position-y: -750;
-    overflow: hidden;
 
     @media(max-width: 768px){
       margin-top: 230px;
     }
-  }
-
-  .idle{
-    background-image: url(../../assets/images/idle.gif);
-  }
-
-  .attack{
-    background-image: url(../../assets/images/attack.gif);
-  }
-
-  .hurt{
-    background-image: url(../../assets/images/hurt.gif);
-    animation: blinker .5s infinite;
-  }
-
-  .died{
-    background-image: url(../../assets/images/died.gif);
   }
 }
 
