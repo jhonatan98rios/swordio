@@ -118,7 +118,7 @@ export default {
       this.oponnent.spritesheet = 'attack'
       this.playSound('attack')
 
-      setTimeout(() => this.oponnent.spritesheet = 'default', 630)
+      setTimeout(() => this.oponnent.spritesheet = 'default', 450)
 
       this.user.active = true
 
@@ -198,7 +198,7 @@ export default {
             }else{
               this.oponnent.spritesheet = 'default'
             }
-          }, 630)
+          }, 360)
 
 
         }else{

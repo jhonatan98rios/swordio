@@ -1,11 +1,6 @@
 <template>
   <div class="view is-centered">
 
-    <!-- <div
-      class="oponnent"
-      :class="spritesheet"
-      ref="oponnent"
-    /> -->
     <canvas ref="canvas" class="oponnent" />
     
   </div>
@@ -24,10 +19,11 @@ export default {
       image: null,
       shift: 0,
       frameWidth: 249,
-      frameHeight: 249,
+      frameHeight: 299,
       totalFrames: 14,
       currentFrame: 0,
-      speed: 200
+      speed: 200,
+      isDead: false
     }
   },
   props: {
@@ -51,7 +47,7 @@ export default {
   methods: {
     animate() {
       this.context.clearRect(0, 0, this.frameWidth, this.frameHeight);
-      this.context.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, 25, -45, this.frameWidth, this.frameHeight);
+      this.context.drawImage(this.image, this.shift, 0, this.frameWidth, (this.frameHeight + 260), 25, 0, this.frameWidth, this.frameHeight);
       this.shift += this.frameWidth + 1;
     
       if (this.currentFrame == this.totalFrames) {
@@ -61,9 +57,10 @@ export default {
     
       this.currentFrame++;
 
-      if(this.$props.spritesheet != 'died'){
+      if (this.isDead == false){
         setTimeout(this.animate, this.speed)
       }
+
     },
 
     loadImage() {
@@ -89,8 +86,14 @@ export default {
       this.shift = 0;
       this.currentFrame = 0;
 
-      this.speed = newVal === 'default' ? 200 : 80
-      this.frameWidth = newVal === 'default' ? 249 : 251                        
+      this.speed = newVal === 'default' ? 200 : 60
+      this.frameWidth = newVal === 'default' ? 249 : 251  
+      
+      if(newVal === 'died'){
+        setTimeout(() => {
+          this.isDead = true
+        }, 450)
+      }
     }
   }
 }
@@ -118,8 +121,8 @@ export default {
   .oponnent{
     max-height: 55%;
     width: 350px;
-    height: 180px;
-    margin-top: 35vh;
+    height: 300px;
+    margin-top: 30vh;
 
     @media(max-width: 768px){
       margin-top: 230px;
