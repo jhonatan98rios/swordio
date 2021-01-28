@@ -2,15 +2,21 @@
   <div class="view is-centered">
 
     <canvas ref="canvas" class="oponnent" />
+
+    <div class="disabled" v-if="sprites">
+      <img :src="sprites.attack" alt="">
+      <img :src="sprites.hurt" alt="">
+      <img :src="sprites.died" alt="">
+    </div>
     
   </div>
 </template>
 
 <script>
-import sprite from '../../assets/images/default.png'
-import attackSprite from '../../assets/images/attack.png'
-import hurtSprite from '../../assets/images/hurt.png'
-import diedSprite from '../../assets/images/died.png'
+import sprite from '../../assets/images/rsz_default.png'
+import attackSprite from '../../assets/images/rsz_attack.png'
+import hurtSprite from '../../assets/images/rsz_hurt.png'
+import diedSprite from '../../assets/images/rsz_died.png'
 
 export default {
   data(){
@@ -18,8 +24,8 @@ export default {
       context: null,
       image: null,
       shift: 0,
-      frameWidth: 249,
-      frameHeight: 299,
+      frameWidth: 274,
+      frameHeight: 300,
       totalFrames: 14,
       currentFrame: 0,
       speed: 200,
@@ -47,7 +53,7 @@ export default {
   methods: {
     animate() {
       this.context.clearRect(0, 0, this.frameWidth, this.frameHeight);
-      this.context.drawImage(this.image, this.shift, 0, this.frameWidth, (this.frameHeight + 260), 25, 0, this.frameWidth, this.frameHeight);
+      this.context.drawImage(this.image, this.shift, 0, this.frameWidth*0.9 , this.frameHeight+150, 0, -30, this.frameWidth, this.frameHeight);
       this.shift += this.frameWidth + 1;
     
       if (this.currentFrame == this.totalFrames) {
@@ -86,8 +92,8 @@ export default {
       this.shift = 0;
       this.currentFrame = 0;
 
-      this.speed = newVal === 'default' ? 200 : 60
-      this.frameWidth = newVal === 'default' ? 249 : 251  
+      this.speed = newVal === 'default' ? 200 : 120
+      this.frameWidth = newVal === 'default' ? 274 : 274  
       
       if(newVal === 'died'){
         setTimeout(() => {
@@ -104,7 +110,7 @@ export default {
 .view{
   height: 100vh;
   width: 100%;
-  background-image: url(../../assets/images/bg-1.jpg);
+  background-image: url(../../assets/images/bg.jpg);
   background-size: cover;
   background-position: 50% 100%;
   z-index: -1;
@@ -120,9 +126,9 @@ export default {
 
   .oponnent{
     max-height: 55%;
-    width: 350px;
+    width: 380px;
     height: 300px;
-    margin-top: 30vh;
+    margin-top: 35vh;
 
     @media(max-width: 768px){
       margin-top: 230px;
@@ -136,4 +142,7 @@ export default {
   100%{ opacity: 0 } 
 }
 
+.disabled{
+  display: none;
+}
 </style>
