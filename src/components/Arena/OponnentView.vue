@@ -2,18 +2,12 @@
   <div class="view is-centered">
 
     <canvas ref="canvas" class="oponnent" />
-
-    <div class="disabled" v-if="sprites">
-      <img :src="sprites.attack" alt="">
-      <img :src="sprites.hurt" alt="">
-      <img :src="sprites.died" alt="">
-    </div>
     
   </div>
 </template>
 
 <script>
-import sprite from '../../assets/images/rsz_default.png'
+import sprite from '../../assets/images/spritesheet.png'
 import attackSprite from '../../assets/images/rsz_attack.png'
 import hurtSprite from '../../assets/images/rsz_hurt.png'
 import diedSprite from '../../assets/images/rsz_died.png'
@@ -140,9 +134,5 @@ export default {
   0%{ opacity: 0 } 
   50%{ opacity: 1 } 
   100%{ opacity: 0 } 
-}
-
-.disabled{
-  display: none;
 }
 </style>
