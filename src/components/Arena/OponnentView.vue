@@ -7,10 +7,11 @@
 </template>
 
 <script>
-import sprite from '../../assets/images/spritesheet.png'
+/* import sprite from '../../assets/images/default.png'
 import attackSprite from '../../assets/images/rsz_attack.png'
 import hurtSprite from '../../assets/images/rsz_hurt.png'
-import diedSprite from '../../assets/images/rsz_died.png'
+import diedSprite from '../../assets/images/rsz_died.png' */
+import sprite from '../../assets/images/new/spritesheet.png'
 
 export default {
   data(){
@@ -18,12 +19,13 @@ export default {
       context: null,
       image: null,
       shift: 0,
-      frameWidth: 274,
-      frameHeight: 300,
-      totalFrames: 14,
+      frameWidth: 549,
+      frameHeight: 100,
+      totalFrames: 15,
       currentFrame: 0,
-      speed: 200,
-      isDead: false
+      speed: 100,
+      isDead: false,
+      canvas: null
     }
   },
   props: {
@@ -33,21 +35,23 @@ export default {
     }
   },
 
-  computed: {
-    sprites(){
-      return {
-        default: sprite,
-        attack: attackSprite,
-        hurt: hurtSprite,
-        died: diedSprite
-      }
-    }
-  },
-
   methods: {
     animate() {
+      
       this.context.clearRect(0, 0, this.frameWidth, this.frameHeight);
-      this.context.drawImage(this.image, this.shift, 0, this.frameWidth*0.9 , this.frameHeight+150, 0, -30, this.frameWidth, this.frameHeight);
+      this.context.drawImage(
+        this.image, 
+        this.shift,
+        this.canvas.sy, 
+        this.canvas.sWidth , 
+        this.canvas.sHeight, 
+        this.canvas.dx, 
+        this.canvas.dy, 
+        this.canvas.dWidth, 
+        this.canvas.dHeight
+      );
+
+      
       this.shift += this.frameWidth + 1;
     
       if (this.currentFrame == this.totalFrames) {
@@ -74,25 +78,40 @@ export default {
     this.context = this.$refs.canvas.getContext("2d");
     this.image = new Image()
 
+    this.canvas = {
+      sx: this.shift,
+      sy: 0,
+      sWidth: 550,
+      sHeight: 600,
+      dx: 10,
+      dy: -30,
+      dWidth: this.frameWidth/2,
+      dHeight: this.frameHeight*2
+    }
+
     this.image.src = sprite
     this.image.addEventListener("load", this.loadImage, false);
     this.animate()
+    console.log(this.canvas)
   },
 
   watch:{
     spritesheet: function(newVal){
-      this.image.src = this.sprites[newVal]
-
       this.shift = 0;
       this.currentFrame = 0;
 
-      this.speed = newVal === 'default' ? 200 : 120
-      this.frameWidth = newVal === 'default' ? 274 : 274  
+      //this.speed = newVal === 'default' ? 200 : 120
+      
+      this.canvas.sy = newVal === 'default' ? 0 :
+        this.canvas.sy = newVal === 'attack' ? 550 :
+          this.canvas.sy = newVal === 'hurt' ? 1100 : 
+            this.canvas.sy = newVal === 'died' ? 1650 : this.canvas.sy
+
       
       if(newVal === 'died'){
         setTimeout(() => {
           this.isDead = true
-        }, 450)
+        }, 350)
       }
     }
   }

@@ -198,7 +198,7 @@ export default {
             }else{
               this.oponnent.spritesheet = 'default'
             }
-          }, 360)
+          }, 2000)
 
 
         }else{
