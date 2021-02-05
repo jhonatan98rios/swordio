@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Welcome from '../views/Welcome.vue'
+//import Welcome from '../views/Welcome.vue'
 import RoomCreation from '../views/RoomCreation.vue'
 import Arena from '../views/Arena.vue'
 import Perfil from '../views/Perfil.vue'
@@ -11,7 +11,7 @@ const routes = [
   {
     path: '/',
     name: 'Welcome',
-    component: Welcome
+    component: Arena
   },
   {
     path: '/salas',

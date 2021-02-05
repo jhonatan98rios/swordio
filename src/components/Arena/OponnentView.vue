@@ -11,7 +11,7 @@
 import attackSprite from '../../assets/images/rsz_attack.png'
 import hurtSprite from '../../assets/images/rsz_hurt.png'
 import diedSprite from '../../assets/images/rsz_died.png' */
-import sprite from '../../assets/images/new/spritesheet.png'
+import sprite from '../../assets/images/cropped/spritesheet.png'
 
 export default {
   data(){
@@ -19,7 +19,7 @@ export default {
       context: null,
       image: null,
       shift: 0,
-      frameWidth: 549,
+      frameWidth: 381,
       frameHeight: 100,
       totalFrames: 15,
       currentFrame: 0,
@@ -80,10 +80,10 @@ export default {
 
     this.canvas = {
       sx: this.shift,
-      sy: 0,
-      sWidth: 550,
-      sHeight: 600,
-      dx: 10,
+      sy: 400,
+      sWidth: 374,
+      sHeight: 500,
+      dx: 50,
       dy: -30,
       dWidth: this.frameWidth/2,
       dHeight: this.frameHeight*2

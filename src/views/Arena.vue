@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <Loading v-if="!user || !oponnent || inLoading" />
-    <div v-if="user && oponnent && !inLoading">
+    <Loading v-if="false" />
+    <div v-if="true">
 
       <div>
         <Header 
@@ -23,7 +23,7 @@
       </div>
 
       <Controls 
-        v-if="user.active" 
+        v-if="true" 
         :active="user.active" 
         :socket="socket" 
         @oponnentCounterAttack="oponnentCounterAttack"
