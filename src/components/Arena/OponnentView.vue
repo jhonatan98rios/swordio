@@ -19,11 +19,11 @@ export default {
       context: null,
       image: null,
       shift: 0,
-      frameWidth: 381,
+      frameWidth: 381.5,
       frameHeight: 100,
       totalFrames: 15,
       currentFrame: 0,
-      speed: 100,
+      speed: 60,
       isDead: false,
       canvas: null
     }
@@ -37,8 +37,7 @@ export default {
 
   methods: {
     animate() {
-      
-      this.context.clearRect(0, 0, this.frameWidth, this.frameHeight);
+      this.context.clearRect(0, 0, this.frameWidth, this.frameHeight*2);
       this.context.drawImage(
         this.image, 
         this.shift,
@@ -80,7 +79,7 @@ export default {
 
     this.canvas = {
       sx: this.shift,
-      sy: 400,
+      sy: 0,
       sWidth: 374,
       sHeight: 500,
       dx: 50,
@@ -100,18 +99,18 @@ export default {
       this.shift = 0;
       this.currentFrame = 0;
 
-      //this.speed = newVal === 'default' ? 200 : 120
+      this.speed = newVal === 'attack' ? 60 : 120
       
       this.canvas.sy = newVal === 'default' ? 0 :
-        this.canvas.sy = newVal === 'attack' ? 550 :
-          this.canvas.sy = newVal === 'hurt' ? 1100 : 
-            this.canvas.sy = newVal === 'died' ? 1650 : this.canvas.sy
+        this.canvas.sy = newVal === 'attack' ? 420 :
+          this.canvas.sy = newVal === 'hurt' ? 840 : 
+            this.canvas.sy = newVal === 'died' ? 1260 : this.canvas.sy
 
       
       if(newVal === 'died'){
         setTimeout(() => {
           this.isDead = true
-        }, 350)
+        }, 400)
       }
     }
   }

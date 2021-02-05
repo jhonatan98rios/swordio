@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <Loading v-if="false" />
-    <div v-if="true">
+    <Loading v-if="!user || !oponnent || inLoading" />
+    <div v-if="user && oponnent && !inLoading">
 
       <div>
         <Header 
@@ -23,7 +23,7 @@
       </div>
 
       <Controls 
-        v-if="true" 
+        v-if="user.active"  
         :active="user.active" 
         :socket="socket" 
         @oponnentCounterAttack="oponnentCounterAttack"
@@ -198,7 +198,7 @@ export default {
             }else{
               this.oponnent.spritesheet = 'default'
             }
-          }, 2000)
+          }, 700)
 
 
         }else{
