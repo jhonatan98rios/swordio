@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "caacd9f7f28a0ce25574",
-    "url": "/css/app.fb939980.css"
+    "revision": "0d40d74d3f27e206a107",
+    "url": "/css/app.3c3cbcb0.css"
   },
   {
     "revision": "b578ee8b4644669a896e4ed2c5da628c",
@@ -20,32 +20,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/itens.55b67201.svg"
   },
   {
-    "revision": "ab509278025954109fde747b7be15d05",
-    "url": "/img/rsz_attack.ab509278.png"
+    "revision": "4514226cf0b55aa35d2b765e89b007c5",
+    "url": "/img/spritesheet.4514226c.png"
   },
   {
-    "revision": "81441c40b59604d4f844ede78dd4a580",
-    "url": "/img/rsz_default.81441c40.png"
-  },
-  {
-    "revision": "267733678303763317a00a8b344f181f",
-    "url": "/img/rsz_died.26773367.png"
-  },
-  {
-    "revision": "91d619e4a96e0a36d406fd0c0f2be473",
-    "url": "/img/rsz_hurt.91d619e4.png"
-  },
-  {
-    "revision": "891369c2c17786e8c78118d2abd73d52",
+    "revision": "be9b8ff9537a08c16a5ca2db941b92d9",
     "url": "/index.html"
   },
   {
-    "revision": "caacd9f7f28a0ce25574",
-    "url": "/js/app.5cb100fa.js"
+    "revision": "0d40d74d3f27e206a107",
+    "url": "/js/app.32372d16.js"
   },
   {
-    "revision": "196ee371ee68d264db88",
-    "url": "/js/chunk-vendors.6dade5a4.js"
+    "revision": "b1a972a14cfde570abc4",
+    "url": "/js/chunk-vendors.bcfe4c5c.js"
   },
   {
     "revision": "c9b1faeccc4214cca80995e01bd69414",
