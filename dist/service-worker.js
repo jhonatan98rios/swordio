@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.b96f0beec413b0282d9a9a8adec5540a.js"
+  "/precache-manifest.2ff80fd10769e5f4e1527e37e8eda7bc.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "swordio"});

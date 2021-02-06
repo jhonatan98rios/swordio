@@ -33,7 +33,7 @@ export default {
 
   methods: {
     animate() {
-      this.context.clearRect(0, 0, this.frameWidth, this.frameHeight*2);
+      this.context.clearRect(0, 0, this.frameWidth*2, this.frameHeight*2);
       this.context.drawImage(
         this.image, 
         this.shift,
@@ -72,14 +72,14 @@ export default {
   mounted(){
     this.context = this.$refs.canvas.getContext("2d");
     this.image = new Image()
-    this.context.scale(.75, .5)
+    this.context.scale(1, .5)
 
     this.canvas = {
       sx: this.shift,
       sy: 0,
       sWidth: 500,
       sHeight: 550,
-      dx: 50,
+      dx: 10,
       dy: -30,
       dWidth: this.frameWidth,
       dHeight: this.frameHeight
@@ -135,10 +135,9 @@ export default {
 
   .oponnent{
     max-height: 55%;
-    width: 400px;
+    width: 350px;
     height: 400px;
-    margin-top: 25vh;
-    border: 1px solid #000;
+    margin-top: 27vh;
 
     @media(max-width: 768px){
       margin-top: 230px;
