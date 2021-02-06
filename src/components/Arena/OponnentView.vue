@@ -7,10 +7,6 @@
 </template>
 
 <script>
-/* import sprite from '../../assets/images/default.png'
-import attackSprite from '../../assets/images/rsz_attack.png'
-import hurtSprite from '../../assets/images/rsz_hurt.png'
-import diedSprite from '../../assets/images/rsz_died.png' */
 import sprite from '../../assets/images/cropped/spritesheet.png'
 
 export default {
@@ -20,7 +16,7 @@ export default {
       image: null,
       shift: 0,
       frameWidth: 381.5,
-      frameHeight: 100,
+      frameHeight: 412.5,
       totalFrames: 15,
       currentFrame: 0,
       speed: 60,
@@ -76,16 +72,17 @@ export default {
   mounted(){
     this.context = this.$refs.canvas.getContext("2d");
     this.image = new Image()
+    this.context.scale(.75, .5)
 
     this.canvas = {
       sx: this.shift,
       sy: 0,
-      sWidth: 374,
-      sHeight: 500,
+      sWidth: 500,
+      sHeight: 550,
       dx: 50,
       dy: -30,
-      dWidth: this.frameWidth/2,
-      dHeight: this.frameHeight*2
+      dWidth: this.frameWidth,
+      dHeight: this.frameHeight
     }
 
     this.image.src = sprite
@@ -138,9 +135,10 @@ export default {
 
   .oponnent{
     max-height: 55%;
-    width: 380px;
-    height: 300px;
-    margin-top: 35vh;
+    width: 400px;
+    height: 400px;
+    margin-top: 25vh;
+    border: 1px solid #000;
 
     @media(max-width: 768px){
       margin-top: 230px;

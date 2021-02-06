@@ -19,4 +19,4 @@ Integrar ataque ao perfil.attack ✓
 Integrar defesa ao oponnent.defense ✓
 Integrar hp ao hp do perfil e oponente ✓
 
-Corrigir animação de morte
+Corrigir animação
