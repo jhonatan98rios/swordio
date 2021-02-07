@@ -41,6 +41,7 @@ export default {
   border-radius: 8px;
   backdrop-filter: blur(5px);
   background-color: rgba(255,255,255,.05);
+  z-index: 9999999;
 
   .close{
     position: absolute;
