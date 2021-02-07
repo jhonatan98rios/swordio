@@ -119,9 +119,6 @@ export default {
   background-size: cover;
   background-position: 50% 100%;
   z-index: -1;
-
-  @media(max-height: 700px){
-    }
   position: absolute;
   top: 0px;
 
@@ -132,11 +129,13 @@ export default {
   .oponnent{
     max-height: 55%;
     width: 350px;
-    height: 400px;
+    height: 350px;
     margin-top: 27vh;
 
     @media(max-width: 768px){
-      margin-top: 230px;
+      margin-top: 220px;
+      width: 300px;
+      height: 280px;
     }
   }
 }
