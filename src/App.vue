@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img class="beta" src="./assets/images/beta.png" alt="Beta Application">
     <Navbar />
     <router-view :socket="socket" />
     <Warning 
@@ -55,5 +56,14 @@ export default {
 
 <style lang="scss">
 @import 'global.scss';
+
+.beta{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 100px;
+  width: 100px;
+  z-index: 999999;
+}
 
 </style>

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import sprite from '../../assets/images/cropped/spritesheet.png'
+import sprite from '../../assets/images/spritesheet.png'
 
 export default {
   data(){
