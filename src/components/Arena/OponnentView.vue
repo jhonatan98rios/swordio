@@ -63,7 +63,6 @@ export default {
     },
 
     loadImage() {
-      console.log('Ok')
       this.animate();
       this.image.removeEventListener('load', this.loadImage)
     }
@@ -78,9 +77,9 @@ export default {
       sx: this.shift,
       sy: 0,
       sWidth: 500,
-      sHeight: 550,
+      sHeight: 500,
       dx: 10,
-      dy: -30,
+      dy: -50,
       dWidth: this.frameWidth,
       dHeight: this.frameHeight
     }
@@ -88,15 +87,12 @@ export default {
     this.image.src = sprite
     this.image.addEventListener("load", this.loadImage, false);
     this.animate()
-    console.log(this.canvas)
   },
 
   watch:{
     spritesheet: function(newVal){
       this.shift = 0;
       this.currentFrame = 0;
-
-      this.speed = newVal === 'attack' ? 60 : 120
       
       this.canvas.sy = newVal === 'default' ? 0 :
         this.canvas.sy = newVal === 'attack' ? 420 :

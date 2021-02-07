@@ -66,7 +66,7 @@ export default {
       counter: 0,
       user: {},
       oponnent: {
-        hp: 200,
+        hp: null,
         spritesheet: 'default'
       },
       console: 'Você está conectado',
@@ -95,12 +95,6 @@ export default {
         spritesheet: 'default',
         blocking: false
       }
-
-      console.log('this.user')
-      console.log(this.user)
-
-      console.log('this.oponnent')
-      console.log(this.oponnent)
     },
 
     startGame: function(){
@@ -198,7 +192,7 @@ export default {
             }else{
               this.oponnent.spritesheet = 'default'
             }
-          }, 700)
+          }, 350)
 
 
         }else{
@@ -218,8 +212,9 @@ export default {
         this.playSound('item')
 
         this.user.hasPotion = false
-        let cureValue = cureEmitter(this.$props.socket, this.user.hp)
+        let cureValue = cureEmitter(this.$props.socket, this.user.hp, this.$store.state.perfil.hp)
         this.user.hp += cureValue
+
         this.console = `Você usou uma poção de cura e recuperou ${cureValue} pontos de vida`
         this.endTurn()
 
@@ -281,7 +276,6 @@ export default {
         this.sounds[sound].play()
       } 
     },
-
   },
 
 
@@ -294,7 +288,6 @@ export default {
       })
 
       this.$props.socket.on('startGame', (perfil) => {
-        //console.log('start game')
         this.initPlayers(perfil)
         this.startGame()
         this.loadSounds()

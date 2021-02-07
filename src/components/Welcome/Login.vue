@@ -58,7 +58,6 @@ export default {
       }
     },
     setPerfil: function( perfil ){   
-      console.log(perfil) 
       this.$store.dispatch('setPerfilState', {
         amount: perfil
       })

@@ -22,8 +22,17 @@ function attackEmiter(socket, blocking, attack, oponnentDefense) {
   return damage
 }
 
-function cureEmitter(socket){
+function cureEmitter(socket, userHP, userMaxHP){
+
   let cureValue = (Math.floor(Math.random() * 20)) + 10
+
+  console.log('userHP', userHP)
+  console.log('userMaxHP', userMaxHP)
+
+
+  if(userHP + cureValue >= userMaxHP){
+    cureValue = userMaxHP - userHP
+  }
 
   socket.emit('useCure', cureValue)
   return cureValue
