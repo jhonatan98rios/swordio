@@ -11,10 +11,10 @@ array.forEach( img => {
         .resize(500, 550)    
         .toFile(outputImage)
         .then(function(new_file_info) {
-            console.log("Image cropped and saved");
+            console.log("Image cropped and saved", new_file_info);
         })
         .catch(function(err) {
-            console.log("An error occured");
+            console.log("An error occured", err);
         });
 
 })

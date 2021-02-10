@@ -224,6 +224,7 @@ export default {
     },
 
     userDeath(){
+      this.inProgress = false
       this.user = 0
       this.console = ''
       this.$store.dispatch('setWarning', { amount: 'Você perdeu...' })
@@ -294,8 +295,10 @@ export default {
       })
 
       this.$props.socket.on('turnOn', () => {
-        this.user.active = true
-        this.initiateCount()
+        if(this.inProgress){
+          this.user.active = true
+          this.initiateCount()
+        }
       })
 
       // Inflinct damage in the player

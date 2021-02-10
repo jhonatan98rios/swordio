@@ -17,7 +17,7 @@ export default {
     close(){
       this.$store.dispatch('setWarning', { amount: null })
 
-      if(this.$props.warning == 'Você venceu!!' || this.$props.warning == 'Você perdeu...'){
+      if(this.$route.name == 'Arena'){
         this.$router.push('salas')
       }
     }
