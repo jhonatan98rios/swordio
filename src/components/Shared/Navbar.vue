@@ -1,12 +1,12 @@
 <template>
-  <div class="navbar">
+  <div class="navbar w-100 m-0-a">
     <div class="burger" @click="toogleMenu">
       <span/>
       <span/>
       <span/>
     </div>
-    <div class="nav-background" v-if="activeMenu" @click="activeMenu = false" /> 
-    <div class="nav-section" :class="{ 'visible' : activeMenu}" @click="activeMenu = false">
+    <div class="nav-background w-100" v-if="activeMenu" @click="activeMenu = false" /> 
+    <div class="nav-section w-100" :class="{ 'visible' : activeMenu}" @click="activeMenu = false">
       <ul>
         <li @click="toogleMenu">
           <router-link to="/salas">Inicio</router-link>
@@ -52,15 +52,12 @@ export default {
 
 <style lang="scss" scoped>
 .navbar{
-  margin: 0 auto;
   top: 0px;
   height: 56px;
-  width: 100%;
   background-color: rgb(0, 0, 0);
   z-index: 99999;
 
   .nav-background{
-    width: 100%;
     height: 100%;
     position: fixed;
     top: 0px;
@@ -91,7 +88,6 @@ export default {
     left: 0px;
     transform: translateX(-300px);
     transition: all .5s;
-    width: 100%;
     max-width: 300px;
     height: calc(100vh - 56px);
     background-color: rgba(0,0,0,.5);

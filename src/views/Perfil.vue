@@ -1,5 +1,5 @@
 <template>
-  <div class="perfil" v-if="perfil">
+  <div class="perfil w-100 m-0-a" v-if="perfil">
     <h2 class="text-white title m-b-32"> Perfil </h2>
     <ul class="list">
       <li class="text-white"> NV: {{ perfil.user_name }} </li>
@@ -30,9 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .perfil{
-  width: 100%;
   max-width: 768px;
-  margin: 0 auto;
   margin-top: 10vh;
 
   .title{

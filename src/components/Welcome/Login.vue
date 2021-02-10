@@ -1,5 +1,5 @@
 <template>
-  <form class="form glass m-t--15 is-column container" @submit="loginAccount">
+  <form class="form glass m-t--15 is-column container p-32" @submit="loginAccount">
     <h2 class="text-center f-white m-t-0 f-sans"> Conecte-se </h2>
     <input class="w-100 m-b-8 f-sans" type="text" placeholder="Insira seu usuário" v-model="user">
     <input class="w-100 m-b-8 f-sans" type="password" placeholder="Insira sua senha" v-model="pass">
@@ -70,7 +70,6 @@ export default {
 <style scoped lang="scss">
 .form{
   width: 70%;
-  padding: 32px;
   border-radius: 8px;
 
   input{

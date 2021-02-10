@@ -7,7 +7,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-report": "vue-cli-service build --report"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -15,7 +16,6 @@
     "express": "^4.17.1",
     "register-service-worker": "^1.7.1",
     "serve-static": "^1.14.1",
-    "sharp": "^0.27.1",
     "socket.io-client": "^3.0.4",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -31,10 +31,12 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "sharp": "^0.27.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "0x": "^4.10.2"
   }
 }

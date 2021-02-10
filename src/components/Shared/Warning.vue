@@ -1,5 +1,5 @@
 <template>
-  <div class="glass warning">
+  <div class="glass warning p-32">
     <span class="close" @click="close">&times;</span>
     <p> {{ warning }} </p>
   </div>
@@ -37,7 +37,6 @@ export default {
   width: 80%;
   max-width: 300px;
   height: 60px;
-  padding: 32px;
   border-radius: 8px;
   backdrop-filter: blur(5px);
   background-color: rgba(255,255,255,.05);

@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome">
+  <div class="welcome m-0-a">
     <Login 
       class="container" 
       v-if="hasAccount" 
@@ -85,50 +85,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
 
   @media(max-width: 768px){
     width: 80%;
   }
-
-  /* p, small {
-    width: 60%;
-    max-width: 320px;
-    text-align: center;
-    margin: 0px auto;
-    color: #333333;
-  }
-
-  input{
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px #333333 solid;
-    margin: 16px auto;
-    font-size: 14px;
-  }
-
-  input:focus{
-    outline: none;
-  }
-
-  button{
-    background-color: transparent;
-    border: none;
-    width: 100px;
-    height: 32px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-
-  button:focus{
-    outline: none;
-  }
-
-  p{
-    cursor: pointer;
-    font-size: 14px;
-  } */
-
 }
 
 

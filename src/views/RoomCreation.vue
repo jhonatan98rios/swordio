@@ -1,6 +1,6 @@
 <template>
   <div class="p-t--15 is-column">
-    <form class="form glass m-0-a text-center is-column container" @submit="connectRoom">
+    <form class="form glass m-0-a text-center is-column container p-32" @submit="connectRoom">
       <h2 class="f-white m-t-0 f-sans"> Criação de sala </h2>
       <p class="f-white f-sans"> Informe o nome da sala que deseja criar, ou informe o nome de uma sala já existente para se conectar. </p>
 
@@ -57,7 +57,6 @@ export default {
 <style lang="scss" scoped>
 .form{
   width: 70%;
-  padding: 32px;  
   max-width: 400px;
   border-radius: 8px;
 

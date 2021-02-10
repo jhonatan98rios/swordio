@@ -8,7 +8,7 @@
       <h4 class="m-y-0 f-white"> Usuário </h4>
       <div class="m-y-0 p-0 is-flex w-100">
         <h3 class="f-white m-y-0"> HP: </h3>
-        <div class="life-bar m-l-8 m-t-2">
+        <div class="life-bar w-100 m-l-8 m-t-2">
           <span :style="userLife" />
         </div>
       </div>
@@ -116,7 +116,6 @@ export default {
   }
 
   .life-bar{
-    width: 100%;
     height: 15px;
     border: 1px solid #eee;
     border-radius: 4px;

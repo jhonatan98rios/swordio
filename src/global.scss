@@ -140,11 +140,15 @@ input{
 
 
 .m-0-a{
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 .p-o{
   padding: 0px;
+}
+
+.p-32{
+  padding: 32px !important;
 }
 
 .f-sans{

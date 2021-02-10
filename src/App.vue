@@ -48,7 +48,6 @@ export default {
     this.socket.on('connect', () => {
       console.log('Connected')
     })
-
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="view is-centered">
+  <div class="view w-100 is-centered">
 
     <canvas ref="canvas" class="oponnent" />
     
@@ -60,11 +60,6 @@ export default {
         setTimeout(this.animate, this.speed)
       }
 
-    },
-
-    loadImage() {
-      this.animate();
-      this.image.removeEventListener('load', this.loadImage)
     }
   },
 
@@ -114,7 +109,6 @@ export default {
 
 .view{
   height: 100vh;
-  width: 100%;
   background-image: url(../../assets/images/bg.jpg);
   background-size: cover;
   background-position: 50% 100%;

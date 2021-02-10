@@ -123,17 +123,15 @@ export default {
 
       this.user.hp -= dmg;
 
-      if(dmg > 0) this.console = `Você perdeu ${dmg} pontos de HP. `
-      if(dmg > 15) this.console += ' Ataque crítico!'      
-      if(dmg <= 0) this.console = `Você se esquivou do golpe`
+      if(dmg > 0) {
+        this.console = `Você perdeu ${dmg} pontos de HP. `
+        if(dmg > 15) this.console += ' Ataque crítico!'      
 
-      if(this.user.hp <= 0){    
-
-        this.console = ''
-        this.$store.dispatch('setWarning', { amount: 'Você perdeu...' })
-        this.user.hp = 0
-        this.$props.socket.emit('logout')
+      }else {
+        this.console = `Você se esquivou do golpe`
       }
+
+      if(this.user.hp <= 0) this.userDeath()
     },
 
 
@@ -142,18 +140,12 @@ export default {
       this.console = `Seu oponente usou uma poção de cura. Ele recuperou ${cureValue} pontos de vida`
     },
 
-
     oponnentCounterAttack: function(){
       this.oponnent.blocking = false
       this.user.hp -= this.oponnent.attack
       this.console = 'Seu oponente contra atacou. Você recebeu 20 pontos de dano'
-      if(this.user.hp <= 0){
-        //alert('Você perdeu!')
-        this.console = 'Você perdeu!'
-        this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
-        this.gotExp(5) 
-        this.$props.socket.emit('logout')
-      }
+
+      if(this.user.hp <= 0) this.userDeath()
     },
 
 
@@ -229,6 +221,14 @@ export default {
       this.console = `Você se preparou para defender`
       defenseEmitter(this.$props.socket)
       this.endTurn()
+    },
+
+    userDeath(){
+      this.user = 0
+      this.console = ''
+      this.$store.dispatch('setWarning', { amount: 'Você perdeu...' })
+      this.gotExp(this.oponnent.nv * 2) 
+      this.$props.socket.emit('logout')
     },
 
     initiateCount: function(){
@@ -319,7 +319,7 @@ export default {
         this.oponnent.hp = 0
         clearInterval(this.turnTimer)
         this.$store.dispatch('setWarning', { amount: 'Você venceu!!' })
-        this.gotExp(10)
+        this.gotExp(this.oponnent.nv*5)
       })
       
     }else{
