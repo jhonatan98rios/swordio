@@ -15,10 +15,6 @@ export default {
     }
   },
   props: {
-    active: {
-      type: Boolean,
-      required: false
-    },
     socket: {
       type: Object,
     }

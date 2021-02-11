@@ -47,7 +47,9 @@ export default {
           })
 
           setToken(response.data.token, username)
-          this.$router.push('salas')
+          if(this.$route.name != 'RoomCreation'){
+            this.$router.push('salas')
+          }
           this.setPerfil(response.data.perfil)
 
         }else{

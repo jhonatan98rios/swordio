@@ -31,10 +31,11 @@ export default {
       let damage = this.maxHealth - this.$props.health
       let damagePercentage = (damage / (this.maxHealth / 100))
       let width = (this.$props.health / (this.$props.health / 100)) - damagePercentage
+      let color = (this.$props.health * 100 / this.maxHealth) * 2.5
 
       return{
         width: (this.$props.health <= 0 ? 0 : width) + '%',
-        backgroundColor: `rgb(${ 200 - this.$props.health }, ${ this.$props.health }, 0)`
+        backgroundColor: `rgb(${ 255 - color }, ${ color }, 0)`
       }
     }
   },
