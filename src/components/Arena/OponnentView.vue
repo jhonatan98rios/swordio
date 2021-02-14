@@ -117,7 +117,7 @@ export default {
   top: 0px;
 
   @media(max-height: 580px){
-    top: -40px;
+    //top: -40px;
   }
 
   .oponnent{
@@ -130,6 +130,16 @@ export default {
       margin-top: 220px;
       width: 300px;
       height: 280px;
+    }
+
+    @media(max-height: 680px){
+      margin-top: 180px;
+      zoom: 0.9;
+    }
+
+    @media(max-height: 1024px) and (max-width: 1024px) and (min-width: 768px){
+      margin-top: 360px;
+      zoom: 1;
     }
   }
 }

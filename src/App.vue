@@ -41,10 +41,11 @@ export default {
   },
 
   mounted(){
-    //
+    if(/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) {
+      window.screen.orientation.lock("portrait")
+    }
+    
     this.socket = io('https://rpg-socket.herokuapp.com');
-
-    // First event in connection (default)
     this.socket.on('connect', () => {
       console.log('Connected')
     })
